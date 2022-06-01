@@ -20,7 +20,6 @@ ifeq ($(UNAME), Darwin)
 else
 	ifeq ($(UNAME), Linux)
 		MLXFLAG = -Imlx -lXext -lX11
-# MLXFLAG = -lmlx -framework OpenGL -framework AppKit
 	endif
 endif
 MLX_DIR		= mlx/
