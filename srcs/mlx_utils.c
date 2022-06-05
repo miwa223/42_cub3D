@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 11:31:45 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/04 11:32:12 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/05 11:34:06 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // mlx_pixel_put()はレンダリングを待たずに1ピクセルずつ描画するので激遅, なので同じ動きをする関数を自作する
 void
-	my_mlx_pixel_put(t_img *img, int x, int y, int color)
+	my_mlx_pixel_put(t_image *img, int x, int y, int color)
 {
     char	*dst;
 
@@ -24,7 +24,7 @@ void
 }
 
 uint32_t
-	get_color(t_img img, int x, int y)
+	get_color(t_image img, int x, int y)
 {
 	return *(uint32_t*)(img.addr +
 		(y * img.line_length + x * (img.bits_per_pixel / 8)));

@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 10:01:31 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/05 10:46:32 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/05 12:42:06 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,32 @@
 # define N 10
 
 const char world_map[][N] = {"1111111111",
-							 "1000000001",
-							 "1000000001",
-							 "1000000001",
-							 "1000000001",
-							 "1000000001",
-							 "1000000001",
-							 "1000000001",
-							 "1000000001",
-							 "1111111111"};
+							"1000000001",
+							"1000000001",
+							"1000000001",
+							"1000000001",
+							"1000000001",
+							"1000000001",
+							"1000000001",
+							"1000000001",
+							"1111111111"};
+
+void
+	set_map(char **map)
+{
+	int i;
+
+	i = -1;
+	map = (char **)malloc(sizeof(char *) * N);
+	while (++i < N)
+		map[i] = ft_strdup(world_map[i]);
+}
 
 static void
 	set_player(t_player *player)
 {
-	player->pos.x = x;
-	player->pos.y = y;
+	player->pos.x = 1;
+	player->pos.y = 1;
 	player->dir.x = 0;
 	player->dir.y = -1;
 	player->plane.x = 1 * tan(deg_rad(66 / 2));
@@ -46,7 +57,7 @@ void
 	data->screen_width = 850;
 	data->screen_height = 500;
 	set_player(&data->player);
-	data->map = world_map;
+	set_map(data->map);
 	// if (!(data->map = ft_calloc(MAX_MAP_H, sizeof(char *)))) // 200 * 200が最大MAPサイズ
 	// 	return (return_error_msg("failed malloc"));
 	data->map_row = N;

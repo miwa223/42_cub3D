@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:10:55 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/05 10:48:01 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/05 12:41:38 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,31 @@
 # define RAY_H
 
 # include "cub3d.h"
-# include "math.h"
+# include "utils.h"
+# include <stdint.h>
+# include <math.h>
 
 # define MAX(a, b)	((a > b) ? a : b)
 # define MIN(a, b)	((a < b) ? a : b)
 # define ERROR	-1
 # define MAX_MAP_W 200
 # define MAX_MAP_H 200
+
+typedef struct	s_vec2 {
+	double		x;
+	double		y;
+} t_vec2;
+
+// 描画するためのイメージ情報を保持
+typedef struct	s_image {
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			width;
+	int			height;
+} t_image;
 
 // 入力情報を保存
 typedef struct	s_player {
@@ -34,7 +52,7 @@ typedef struct	s_player {
 typedef struct s_data {
 	void		*mlx;
 	void		*win;
-	t_img		img;
+	t_image		img;
 	int			screen_width;
 	int			screen_height;
 	t_player	player;
@@ -49,29 +67,13 @@ typedef struct s_data {
 	uint32_t	south_color;
 	uint32_t	west_color;
 	uint32_t	east_color;
-	// t_img		tex_n; // 北
-	// t_img		tex_s; // 南
-	// t_img		tex_w; // 西
-	// t_img		tex_e; // 東
+	// t_image		tex_n; // 北
+	// t_image		tex_s; // 南
+	// t_image		tex_w; // 西
+	// t_image		tex_e; // 東
 	// int			tex_width;
 	// int			tex_height;
 } t_data;
-
-typedef struct	s_vec2 {
-	double		x;
-	double		y;
-} t_vec2;
-
-// 描画するためのイメージ情報を保持
-typedef struct	s_img {
-	void		*img;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	int			width;
-	int			height;
-} t_img;
 
 typedef struct	s_ray {
 	// カメラ平面上のx座標 (3D表示時の画面のx座標)  -1.0~1.0
@@ -95,7 +97,7 @@ typedef struct	s_ray {
 	double		delta_dist_x;
 	double		delta_dist_y;
 	// texは当たった壁のテクスチャ
-	t_img		*tex;
+	t_image		*tex;
 	// colorは当たった壁のカラー
 	u_int32_t	color;
 } t_ray;
@@ -127,12 +129,12 @@ int return_error_msg(char *msg);
 void put_err_msg(char *msg);
 /* game.c */
 void set_screen(t_data *data);
-void main_loop(t_data *data);
+int main_loop(t_data *data);
 /* init_player.c */
 void init_player(t_player *player, double x, double y, char dir);
 /* mlx_utils.c */
-void my_mlx_pixel_put(t_img *img, int x, int y, int color);
-u_int32_t get_color(t_img img, int x, int y);
+void my_mlx_pixel_put(t_image *img, int x, int y, int color);
+u_int32_t get_color(t_image img, int x, int y);
 /* set_data.c */
 void set_data(t_data *data);
 /* vector.c */

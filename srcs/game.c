@@ -6,14 +6,14 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:22:38 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/05 10:43:23 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/05 11:47:20 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static void
-	reset_img(t_img *img)
+	reset_img(t_image *img)
 {
 	int	x;
 	int	y;
@@ -48,10 +48,10 @@ void
 		data->screen_height);
 	data->img.addr = mlx_get_data_addr(data->img.img,
 		&data->img.bits_per_pixel, &data->img.line_length, &data->img.endian);
-	data->img.width = data->screen_width;
-	data->img.height = data->screen_height;
-	data->tex_width = data->tex_n.width;
-	data->tex_height = data->tex_n.height;
+	// data->img.width = data->screen_width;
+	// data->img.height = data->screen_height;
+	// data->tex_width = data->tex_n.width;
+	// data->tex_height = data->tex_n.height;
 	// planeベクトルの大きさを求める
 	plane_length = vec_length(data->player.plane);
 	// 基準となる高さ、視野角に応じて横幅が変わってしますので、視野角の逆数をかけて１に戻す
@@ -63,7 +63,7 @@ int
 	main_loop(t_data *data)
 {
 	reset_img(&data->img);
-	draw_walls(data);
+	draw_wall(data);
 	// print_data(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	return (0);

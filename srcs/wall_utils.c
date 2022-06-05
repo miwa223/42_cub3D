@@ -6,12 +6,12 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 10:48:54 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/04 11:02:14 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/05 12:44:00 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
+/* 
 void
 	set_texture(t_data *data, t_ray *ray)
 {
@@ -30,6 +30,7 @@ void
 			ray->tex = &data->tex_s;
 	}
 }
+ */
 
 void
 	set_wall_color(t_data *data, t_ray *ray)
@@ -37,15 +38,15 @@ void
 	if (ray->side == 0)
 	{
 		if (ray->step_x > 0)
-			ray->color = data->west_c;
+			ray->color = data->west_color;
 		else
-			ray->color = data->east_c;
+			ray->color = data->east_color;
 	}
 	else
 	{
 		if (ray->step_y > 0)
-			ray->color = data->nouth_c;
+			ray->color = data->nouth_color;
 		else
-			ray->color = data->south_c;		
+			ray->color = data->south_color;		
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 20:08:16 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/05 10:42:17 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/05 11:42:59 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ static void
 		wall->draw_end = data->screen_height - 1;
 	// 当たった壁上の正確なx座標を求める
 	if (ray.side == 0)
-		wall->wall_x = game->player.pos.y + ray.perp_wall_dist * ray.dir.y;
+		wall->wall_x = data->player.pos.y + ray.perp_wall_dist * ray.dir.y;
 	else
-		wall->wall_x = game->player.pos.x + ray.perp_wall_dist * ray.dir.x;
+		wall->wall_x = data->player.pos.x + ray.perp_wall_dist * ray.dir.x;
 	wall->wall_x -= floor(wall->wall_x);
 	wall->step = 1.0;
 }
@@ -136,9 +136,9 @@ void
 	t_wall wall;
 
 	x = 0;
-	while (x < screen_width)
+	while (x < data->screen_width)
 	{
-		init_ray(&ray, x);
+		init_ray(data, &ray, x);
 		raycast(data, &ray);
 		data->z_buffer[x] = ray.perp_wall_dist;
 		cal_screen_info(data, ray, &wall);
