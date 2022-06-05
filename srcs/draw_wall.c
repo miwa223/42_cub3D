@@ -6,13 +6,13 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 20:08:16 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/04 11:36:47 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/05 10:42:17 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void
+static void
 	init_ray(t_data *data, t_ray *ray, int x)
 {
 	// カメラ平面上のx座標（３D表示時の画面のx座標）　-1.0~1.0
@@ -47,7 +47,7 @@ void
 	}
 }
 
-void
+static void
 	raycast(t_data *data, t_ray *ray)
 {
 	while (data->map[ray->map_x][ray->map_y] != '1')
@@ -77,7 +77,7 @@ void
 	set_wall_color(data, ray);
 }
 
-void
+static void
 	cal_screen_info(t_data *data, t_ray ray, t_wall *wall)
 {
 	// スクリーンに描画する必要のある縦線の長さを求める
@@ -89,22 +89,16 @@ void
 	wall->draw_end = wall->line_height / 2 + data->screen_height / 2;
 	if (wall->draw_end >= data->screen_height)
 		wall->draw_end = data->screen_height - 1;
-	// // 当たった壁上の正確なx座標を求める
-	// if (ray.side == 0)
-	// 	wall->wall_x = game->player.pos.y + ray.perp_wall_dist * ray.dir.y;
-	// else
-	// 	wall->wall_x = game->player.pos.x + ray.perp_wall_dist * ray.dir.x;
+	// 当たった壁上の正確なx座標を求める
+	if (ray.side == 0)
+		wall->wall_x = game->player.pos.y + ray.perp_wall_dist * ray.dir.y;
+	else
+		wall->wall_x = game->player.pos.x + ray.perp_wall_dist * ray.dir.x;
 	wall->wall_x -= floor(wall->wall_x);
-	// // テクスチャ上のx座標（0~TEXTURE_WIDTH）
-	// wall->texture_x = (int)(wall->wall_x * ray.tex->width);
-	// if ((ray.side == 0 && ray.dir.x < 0) || (ray.side == 1 && ray.dir.y > 0))
-	// 	wall->texture_x = ray.tex->width - wall->texture_x - 1;
-	// // 各ピクセルのどのテクスチャのピクセルを描画するか計算する
-	// // y方向の１ピクセルごとにテクスチャのy座標が動く量
-	// wall->step = 1.0 * ray.tex->height / (double)wall->line_height;
+	wall->step = 1.0;
 }
 
-void
+static void
 	draw_stripe(t_data *data, t_ray ray, t_wall *wall, int x)
 {
 	uint32_t	color;
@@ -124,11 +118,6 @@ void
 		// （TEXTURE_HEGHT - 1）とのANDによりテクスチャ座標がテクスチャの高さを超えないようにしている
 		if (y >= wall->draw_start && y < wall->draw_end)
 		{
-			// wall->texture_y = (int)wall->texture_pos_y;
-			// if (wall->texture_y >= ray.tex->height)
-			// 	wall->texture_y = ray.tex->height - 1;
-			// wall->texture_pos_y += wall->step;
-			// color = get_color(*ray.tex, wall->texture_x, wall->texture_y);
 			color = ray.color;
 			// 正方形のy面にヒットしていた場合はRGBのそれぞれを1/2にすることで暗くする
 			if (ray.side == 1)
@@ -146,10 +135,6 @@ void
 	t_ray ray;
 	t_wall wall;
 
-	// planeベクトルの大きさを求める
-	plane_length = vec_length(data->player.plane);
-	// 基準となる高さ、視野角に応じて横幅が変わってしまうので、視野角の逆数をかけて１に戻す
-	data->horizon = (double)data->screen_width * (1 / (2 * plane_length));
 	x = 0;
 	while (x < screen_width)
 	{

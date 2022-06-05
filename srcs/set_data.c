@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 10:01:31 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/04 11:02:07 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/05 10:46:32 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ const char world_map[][N] = {"1111111111",
 							 "1000000001",
 							 "1111111111"};
 
-void
+static void
 	set_player(t_player *player)
 {
 	player->pos.x = x;
@@ -51,6 +51,7 @@ void
 	// 	return (return_error_msg("failed malloc"));
 	data->map_row = N;
 	data->map_col = N;
+	data->horizon = 0;
 	data->sky_color = 0x00FFFF;
 	data->ground_color = 0xD3D3D3;
 	data->nouth_color = 0xFF00FF;
@@ -63,5 +64,4 @@ void
 	// data->tex_e.img = NULL;
 	// data->tex_width = 0;
 	// data->tex_height = 0;
-	// data->horizon = 0;
 }
