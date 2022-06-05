@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:09:38 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/05 23:23:54 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/05 23:34:29 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	parse_cubfile(t_data *data, char *file)
 		exit_program(MALLOC_FAIL);
 	init_mlx(data);
 	count_row_col(data->cubfile, fd);
-	if (close(fd) == -1)
+	if (close(fd) == ERROR)
 	{
 		free_buf((void **)&(data->cubfile));
 		exit_program(CLOSE_FAIL);
