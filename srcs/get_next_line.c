@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 17:56:21 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/05 17:58:45 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/05 19:08:09 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ bool	find_newline_in_save(char **save, char **line)
 	*line = ft_substr(*save, 0, after_newline - *save - 1);
 	if (!*line)
 	{
-		free_buf(*save);
+		free_buf((void **)save);
 		exit_program(MALLOC_FAIL);
 	}
 	tmp = *save;
 	*save = ft_strdup(after_newline);
 	if (!*save)
 		exit_program(MALLOC_FAIL);
-	free_buf(tmp);
+	free_buf((void **)&tmp);
 	return (true);
 }
 
@@ -80,7 +80,7 @@ int	get_line(char **save, char **line, int fd)
 		store_nextline_in_save(save, buf);
 		buf_to_line(line, buf, save);
 	}
-	free_buf(buf);
+	free_buf((void **)&buf);
 	return (1);
 }
 
@@ -108,11 +108,11 @@ void	buf_to_line(char **line, char *buf, char **save)
 	{
 		tmp = *line;
 		*line = ft_strjoin_new_line(*line, buf);
-		free_buf(tmp);
+		free_buf((void **)&tmp);
 	}
 	if (!*line)
 	{
-		free_buf(*save);
+		free_buf((void **)save);
 		exit_program(MALLOC_FAIL);
 	}
 }
