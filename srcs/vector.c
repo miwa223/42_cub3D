@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 10:30:25 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/04 10:31:50 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/06 11:46:24 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ double
 {
 	return (sqrt(vec.x * vec.x + vec.y * vec.y));
 }
-
+/* 角度をラジアンに変更する */
 double
 	deg_rad(int x)
 {

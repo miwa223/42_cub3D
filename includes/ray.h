@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:10:55 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/05 12:41:38 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/06 11:59:56 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef struct	s_image {
 	int			height;
 } t_image;
 
-// 入力情報を保存
 typedef struct	s_player {
 	t_vec2		pos;  // 現在位置(px)[x, y]
 	t_vec2		dir;       // 現在向いている方向のベクトル
@@ -49,6 +48,8 @@ typedef struct	s_player {
 	int			is_sidling;  // 動くキーが押されているか (D=1, A=-1, None=0)
 	int			is_rotating; // 動くキーが押されているか (左矢印=1, 右矢印=-1, None=0)
 } t_player;
+
+// 入力情報を保存
 typedef struct s_data {
 	void		*mlx;
 	void		*win;

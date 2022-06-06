@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 20:08:16 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/05 11:42:59 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/06 13:47:11 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void
 {
 	// カメラ平面上のx座標（３D表示時の画面のx座標）　-1.0~1.0
 	ray->camera_x = 2 * x / (double)data->screen_width - 1;
+	// 光線の方向ベクトル
 	ray->dir.x = data->player.dir.x + data->player.plane.x * ray->camera_x;
 	ray->dir.y = data->player.dir.y + data->player.plane.y * ray->camera_x;
 	// map: 現在対象としているマップ内の正方形を表す
@@ -24,6 +25,7 @@ static void
 	ray->map_y = (int)data->player.pos.y;
 	// delta_distは光線が今の正方形から次の正方形に行くために移動する距離
 	// 今回は比率だけ必要なため、簡略化した形でも問題ない
+	// 0除算の考慮がいるかも
 	ray->delta_dist_x = fabs(1 / ray->dir.x);
 	ray->delta_dist_y = fabs(1 / ray->dir.y);
 	// stepとside_distを求める
@@ -104,9 +106,6 @@ static void
 	uint32_t	color;
 	int			y;
 
-	// テクスチャの現在のy座標
-	wall->texture_y = (wall->draw_start - data->screen_height / 2 \
-		+ wall->line_height / 2) * wall->step;
 	y = 0;
 	while (y < data->screen_height)
 	{
@@ -114,8 +113,6 @@ static void
 			my_mlx_pixel_put(&data->img, x, y, data->sky_color);
 		else
 			my_mlx_pixel_put(&data->img, x, y, data->ground_color);
-		// テクスチャの現在の座標（double型）を整数型に変換
-		// （TEXTURE_HEGHT - 1）とのANDによりテクスチャ座標がテクスチャの高さを超えないようにしている
 		if (y >= wall->draw_start && y < wall->draw_end)
 		{
 			color = ray.color;
