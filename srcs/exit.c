@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 18:39:32 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/05 23:00:27 by mmasubuc         ###   ########.fr       */
+/*   Created: 2022/06/05 18:07:05 by mmasubuc          #+#    #+#             */
+/*   Updated: 2022/06/05 22:43:58 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "parser.h"
 
-int	main(int argc, char *argv[])
+void	exit_program(char *msg)
 {
-	t_data	data;
+	ft_putstr_fd("Error\n", 2);
+	ft_putendl_fd(msg, 2);
+	exit(EXIT_FAILURE);
+}
 
-	is_valid_argv(argc, argv);
-	parse_cubfile(&data, argv[1]);
-	print_data(&data);
-	mlx_hook(data.mlx_win, 17, 0, close_window, &data);
-	mlx_loop(data.mlx);
-	return (0);
+void	free_buf(void **buf)
+{
+	free(*buf);
+	*buf = NULL;
+}
+
+int	close_window(t_data *data)
+{
+	free_2d_array(data->cubfile->map);
+	free(data->cubfile);
+	mlx_destroy_window(data->mlx, data->mlx_win);
+	mlx_destroy_display(data->mlx);
+	exit(EXIT_SUCCESS);
 }

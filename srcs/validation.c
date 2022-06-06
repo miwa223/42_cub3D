@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 18:39:32 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/05 23:00:27 by mmasubuc         ###   ########.fr       */
+/*   Created: 2022/06/05 22:48:14 by mmasubuc          #+#    #+#             */
+/*   Updated: 2022/06/05 22:59:49 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "parser.h"
 
-int	main(int argc, char *argv[])
+void	is_valid_argv(int argc, char **argv)
 {
-	t_data	data;
+	int		i;
+	char	*str;
 
-	is_valid_argv(argc, argv);
-	parse_cubfile(&data, argv[1]);
-	print_data(&data);
-	mlx_hook(data.mlx_win, 17, 0, close_window, &data);
-	mlx_loop(data.mlx);
-	return (0);
+	i = 0;
+	str = NULL;
+	if (argc != 2)
+		exit_program(INVALID_ARG);
+	while (argv[1][i] != '\0')
+	{
+		if (argv[1][i] == '.')
+			str = &argv[1][i];
+		i++;
+	}
+	if (!str || ft_strlen(str) != 4
+		|| ft_strncmp(str, ".cub", 4) != 0)
+		exit_program(INVALID_ARG);
 }

@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 18:39:32 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/05 23:00:27 by mmasubuc         ###   ########.fr       */
+/*   Created: 2022/06/05 18:04:49 by mmasubuc          #+#    #+#             */
+/*   Updated: 2022/06/05 22:59:24 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "parser.h"
+#ifndef PARSER_H
+# define PARSER_H
 
-int	main(int argc, char *argv[])
-{
-	t_data	data;
+# include <stdbool.h>
+# include <fcntl.h>
+# include "get_next_line.h"
 
-	is_valid_argv(argc, argv);
-	parse_cubfile(&data, argv[1]);
-	print_data(&data);
-	mlx_hook(data.mlx_win, 17, 0, close_window, &data);
-	mlx_loop(data.mlx);
-	return (0);
-}
+void	parse_cubfile(t_data *data, char *file);
+void	init_mlx(t_data *data);
+void	count_row_col(t_cubfile *file, int fd);
+void	get_map(t_data *data, char *file);
+
+#endif
