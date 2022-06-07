@@ -6,11 +6,11 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 10:30:25 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/06 11:46:24 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/07 12:56:04 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "ray.h"
 
 double
 	vec_length(t_vec2 vec)

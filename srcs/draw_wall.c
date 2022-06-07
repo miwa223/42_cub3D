@@ -6,11 +6,11 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 20:08:16 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/06 13:47:11 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/07 12:56:16 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "ray.h"
 
 static void
 	init_ray(t_data *data, t_ray *ray, int x)

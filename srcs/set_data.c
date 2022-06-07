@@ -6,11 +6,11 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 10:01:31 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/05 12:42:06 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/07 12:55:55 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "ray.h"
 
 # define N 10
 

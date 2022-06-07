@@ -6,15 +6,11 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:39:08 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/05 10:12:31 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/07 12:54:20 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-
-# include "../mlx/mlx.h"
-# include "../mlx/mlx_int.h"
-# include "ray.h"
 
 #endif

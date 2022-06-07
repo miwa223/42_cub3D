@@ -33,17 +33,20 @@ endif
 MLX_DIR		= mlx/
 MLX_NAME	= libmlx_$(UNAME).a
 
+LIBFT			= $(LIBFT_DIR)$(LIBFT_NAME)
+LIBMLX			= $(MLX_DIR)$(MLX_NAME)
+LIBS			= $(LIBFT) $(LIBMLX) -lm
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	make -C $(MLX_DIR)
-	make -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) $(OBJ) -L. $(LIBFT_DIR)$(LIBFT_NAME) $(MLXFLAG) -L. $(MLX_DIR)$(MLX_NAME) -o $(NAME)
+$(NAME): $(OBJ) $(LIBS)
+	$(CC) $(CFLAGS) -o $@ $^ $(MLXFLAG)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	make -C $(MLX_DIR)
+	make -C $(LIBFT_DIR)
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
 	make clean -C $(MLX_DIR)

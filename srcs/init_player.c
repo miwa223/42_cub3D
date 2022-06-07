@@ -6,11 +6,11 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:13:54 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/05 10:20:22 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/07 12:56:16 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "ray.h"
 
 static void
 	init_player_dir(t_player *player, char dir)

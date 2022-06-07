@@ -6,17 +6,18 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:10:55 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/06 11:59:56 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/07 12:54:45 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAY_H
 # define RAY_H
 
-# include "cub3d.h"
-# include "utils.h"
 # include <stdint.h>
 # include <math.h>
+# include "../libft/libft.h"
+# include "../mlx/mlx.h"
+# include "../mlx/mlx_int.h"
 
 # define MAX(a, b)	((a > b) ? a : b)
 # define MIN(a, b)	((a < b) ? a : b)

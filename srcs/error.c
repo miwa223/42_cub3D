@@ -6,11 +6,11 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 10:04:36 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/04 10:04:54 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/07 12:56:16 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "ray.h"
 
 void
 	put_err_msg(char *msg)
