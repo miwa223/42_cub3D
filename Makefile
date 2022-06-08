@@ -12,7 +12,8 @@ SRC_FILE		:= main.c \
 				mlx_utils.c \
 				set_data.c \
 				vector.c \
-				wall_utils.c
+				wall_utils.c \
+				debug.c
 SRC				= $(addprefix $(SRC_DIR), $(SRC_FILE))
 
 OBJ_DIR			= obj/

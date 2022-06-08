@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 20:08:16 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/07 12:56:16 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/08 12:45:17 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,10 @@ void
 	{
 		init_ray(data, &ray, x);
 		raycast(data, &ray);
-		data->z_buffer[x] = ray.perp_wall_dist;
+		// data->z_buffer[x] = ray.perp_wall_dist;
 		cal_screen_info(data, ray, &wall);
+		// print_ray(ray);
+		// print_wall(wall);
 		draw_stripe(data, ray, &wall, x);
 		x++;
 	}
