@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:22:38 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/07 12:56:16 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/09 12:17:18 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void
 		data->screen_height);
 	data->img.addr = mlx_get_data_addr(data->img.img,
 		&data->img.bits_per_pixel, &data->img.line_length, &data->img.endian);
-	// data->img.width = data->screen_width;
-	// data->img.height = data->screen_height;
+	data->img.width = data->screen_width;
+	data->img.height = data->screen_height;
 	// data->tex_width = data->tex_n.width;
 	// data->tex_height = data->tex_n.height;
 	// planeベクトルの大きさを求める
@@ -64,6 +64,7 @@ int
 {
 	reset_img(&data->img);
 	draw_wall(data);
+	update_player(data);
 	// print_data(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	return (0);

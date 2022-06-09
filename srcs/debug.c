@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:38:19 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/08 12:36:47 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/09 10:48:55 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,20 @@ void
 	// printf("texture_pos_y: %lf\n", wall.texture_pos_y);
 	// printf("texture_y: %d\n", wall.texture_y);
 	printf("======================================\n\n");
+}
+
+void
+	print_data(t_data *data)
+{
+	printf("\n=== data =========================================\n");
+	printf("player\n");
+	printf("pos\n\tx: %lf\n\ty: %lf\n", \
+			data->player.pos.x, data->player.pos.y);
+	printf("dir\n\tx: %lf\n\ty: %lf\n", \
+			data->player.dir.x, data->player.dir.y);
+	printf("plane\n\tx: %lf\n\ty: %lf\n", \
+			data->player.plane.x, data->player.plane.y);
+	printf("status\n\tis_moving: %d\n\tis_rotating: %d\n", \
+			data->player.is_moving, data->player.is_rotating);
+	printf("\n====================================================\n");
 }
