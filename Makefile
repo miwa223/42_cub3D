@@ -13,7 +13,9 @@ SRC_FILE		:= main.c \
 				set_data.c \
 				vector.c \
 				wall_utils.c \
-				debug.c
+				debug.c \
+				player.c \
+				hooks.c
 SRC				= $(addprefix $(SRC_DIR), $(SRC_FILE))
 
 OBJ_DIR			= obj/

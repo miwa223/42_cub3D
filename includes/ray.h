@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:10:55 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/08 12:13:11 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/09 12:20:26 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@
 # define ERROR	-1
 # define MAX_MAP_W 200
 # define MAX_MAP_H 200
+# define MOVE_P (0.033)
+# define ROTATE_RAD (M_PI / 300)
+
+# define KEY_A			97
+# define KEY_S			115
+# define KEY_D			100
+# define KEY_W			119
+# define KEY_LEFT		65361
+# define KEY_RIGHT		65363
+# define KEY_ESC		65307
+# define KEY_Q			113
 
 typedef struct	s_vec2 {
 	double		x;
@@ -150,4 +161,11 @@ void set_texture(t_data *data, t_ray *ray);
 void print_map(t_data *data);
 void print_ray(t_ray ray);
 void print_wall(t_wall wall);
+void print_data(t_data *data);
+/* player.c */
+void update_player(t_data *data);
+/* hook.c */
+int close_window(t_data *data);
+int key_press(int keycode, t_data *data);
+int key_release(int keycode, t_data *data);
 #endif
