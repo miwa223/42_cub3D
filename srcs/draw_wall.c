@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 20:08:16 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/10 13:31:31 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/10 13:38:07 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ static void
 			+ (1 - ray->step_y) / 2) / ray->dir.y;
 	// 壁に当たった方角のテクスチャを設定
 	set_texture(data, ray);
-	// set_wall_color(data, ray);
 }
 
 static void
@@ -130,9 +129,6 @@ static void
 				wall->texture_y = ray.tex->height - 1;
 			wall->texture_pos_y += wall->step;
 			color = get_color(*ray.tex, wall->texture_x, wall->texture_y);
-			// 正方形のy面にヒットしていた場合はRGBのそれぞれを1/2にすることで暗くする
-			if (ray.side == 1)
-				color = (color >> 1) & 0x7f7f7f;
 			my_mlx_pixel_put(&data->img, x, y, color);
 		}
 		y++;
