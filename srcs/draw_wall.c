@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 20:08:16 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/10 10:51:05 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/10 13:31:31 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static void
 	ray->side_dist_x = (ray->map_x + 1.0 - data->player.pos.x)
 		* ray->delta_dist_x;
 	ray->step_y = 1;
-	ray->side_dist_y = (ray->map_y + 1.0 - data->player.pos.y);
+	ray->side_dist_y = (ray->map_y + 1.0 - data->player.pos.y)
+		* ray->delta_dist_y;
 	// 光線ベクトルが負の場合
 	if (ray->dir.x < 0)
 	{
