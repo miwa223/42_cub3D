@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 10:30:25 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/07 12:56:04 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/10 11:34:12 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void
 	t_vec2	old_vec;
 
 	old_vec = *vec;
-	vec->x = old_vec.x * cos(rad) + old_vec.y * sin(rad);
+	vec->x = old_vec.x * cos(rad) - old_vec.y * sin(rad);
 	vec->y = old_vec.x * sin(rad) + old_vec.y * cos(rad);
 }
