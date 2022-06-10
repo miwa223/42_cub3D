@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:10:55 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/09 12:20:26 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/10 10:53:35 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,16 @@ typedef struct s_data {
 	double		*z_buffer;
 	uint32_t	sky_color;
 	uint32_t	ground_color;
-	uint32_t	nouth_color;
-	uint32_t	south_color;
-	uint32_t	west_color;
-	uint32_t	east_color;
-	// t_image		tex_n; // 北
-	// t_image		tex_s; // 南
-	// t_image		tex_w; // 西
-	// t_image		tex_e; // 東
-	// int			tex_width;
-	// int			tex_height;
+	// uint32_t	nouth_color;
+	// uint32_t	south_color;
+	// uint32_t	west_color;
+	// uint32_t	east_color;
+	t_image		tex_n; // 北
+	t_image		tex_s; // 南
+	t_image		tex_w; // 西
+	t_image		tex_e; // 東
+	int			tex_width;
+	int			tex_height;
 } t_data;
 
 typedef struct	s_ray {
@@ -148,8 +148,10 @@ void init_player(t_player *player, double x, double y, char dir);
 /* mlx_utils.c */
 void my_mlx_pixel_put(t_image *img, int x, int y, int color);
 u_int32_t get_color(t_image img, int x, int y);
+int read_image(t_data *data, t_image *img, char *filepath);
 /* set_data.c */
 void set_data(t_data *data);
+void set_tex(t_data *data);
 /* vector.c */
 double vec_length(t_vec2 vec);
 double deg_rad(int x);
@@ -162,6 +164,7 @@ void print_map(t_data *data);
 void print_ray(t_ray ray);
 void print_wall(t_wall wall);
 void print_data(t_data *data);
+void print_image(t_image *img);
 /* player.c */
 void update_player(t_data *data);
 /* hook.c */

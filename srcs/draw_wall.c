@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 20:08:16 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/08 12:45:17 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/10 10:51:05 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ static void
 		ray->perp_wall_dist = (ray->map_y - data->player.pos.y \
 			+ (1 - ray->step_y) / 2) / ray->dir.y;
 	// 壁に当たった方角のテクスチャを設定
-	// set_texture(data, ray);
-	set_wall_color(data, ray);
+	set_texture(data, ray);
+	// set_wall_color(data, ray);
 }
 
 static void
@@ -97,7 +97,13 @@ static void
 	else
 		wall->wall_x = data->player.pos.x + ray.perp_wall_dist * ray.dir.x;
 	wall->wall_x -= floor(wall->wall_x);
-	wall->step = 1.0;
+	// テクスチャ上のx座標（0~TEXTURE_WIDTH）
+	wall->texture_x = (int)(wall->wall_x * ray.tex->width);
+	if ((ray.side == 0 && ray.dir.x < 0) || (ray.side == 1 && ray.dir.y > 0))
+		wall->texture_x = ray.tex->width - wall->texture_x - 1;
+	// 各ピクセルのどのテクスチャのピクセルを描画するか計算する
+	// y方向の１ピクセルごとにテクスチャのy座標が動く量
+	wall->step = 1.0 * ray.tex->height / (double)wall->line_height;
 }
 
 static void
@@ -106,6 +112,9 @@ static void
 	uint32_t	color;
 	int			y;
 
+	// テクスチャの現在のy座標
+	wall->texture_pos_y = (wall->draw_start - data->screen_height / 2 \
+		+ wall->line_height / 2) * wall->step;
 	y = 0;
 	while (y < data->screen_height)
 	{
@@ -115,7 +124,11 @@ static void
 			my_mlx_pixel_put(&data->img, x, y, data->ground_color);
 		if (y >= wall->draw_start && y < wall->draw_end)
 		{
-			color = ray.color;
+			wall->texture_y = (int)wall->texture_pos_y;
+			if (wall->texture_y >= ray.tex->height)
+				wall->texture_y = ray.tex->height - 1;
+			wall->texture_pos_y += wall->step;
+			color = get_color(*ray.tex, wall->texture_x, wall->texture_y);
 			// 正方形のy面にヒットしていた場合はRGBのそれぞれを1/2にすることで暗くする
 			if (ray.side == 1)
 				color = (color >> 1) & 0x7f7f7f;

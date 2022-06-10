@@ -6,12 +6,12 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 10:48:54 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/07 12:56:10 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/10 10:57:32 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
-/* 
+ 
 void
 	set_texture(t_data *data, t_ray *ray)
 {
@@ -30,8 +30,8 @@ void
 			ray->tex = &data->tex_s;
 	}
 }
- */
 
+/* 
 void
 	set_wall_color(t_data *data, t_ray *ray)
 {
@@ -50,3 +50,4 @@ void
 			ray->color = data->south_color;		
 	}
 }
+ */

@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:38:19 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/09 10:48:55 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/10 10:57:45 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,17 @@ void
 	printf("status\n\tis_moving: %d\n\tis_rotating: %d\n", \
 			data->player.is_moving, data->player.is_rotating);
 	printf("\n====================================================\n");
+}
+
+void
+	print_image(t_image *img)
+{
+	printf("\n=== image info ======================\n");
+	printf("img_p: %p\n", img->img);
+	printf("bits_pre_pixel: %d\n", img->bits_per_pixel);
+	printf("line_length: %d\n", img->line_length);
+	printf("endian: %d\n", img->endian);
+	printf("width: %d\n", img->width);
+	printf("height: %d\n", img->height);
+	printf("\n====================================\n");
 }
