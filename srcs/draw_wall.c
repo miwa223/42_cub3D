@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 20:08:16 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/10 13:38:07 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/11 09:10:55 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void
 	if (ray->dir.y < 0)
 	{
 		ray->step_y = -1;
-		ray->side_dist_y = (data->player.pos.x - ray->map_y)
+		ray->side_dist_y = (data->player.pos.y - ray->map_y)
 			* ray->delta_dist_y;
 	}
 }
