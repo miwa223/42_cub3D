@@ -4,7 +4,9 @@ INCLUDES		= -I./includes
 CFLAGS			= -Wall -Werror -Wextra -MMD -MP $(INCLUDES)
 
 SRC_DIR			= srcs/
-SRC_FILE		= main.c validation.c parse_cubfile.c utils.c get_next_line.c exit.c \
+SRC_FILE		= main.c validation.c init.c \
+					parse_cubfile.c parse_colors.c parse_textures.c parse_map.c \
+					utils.c get_next_line.c free.c exit.c \
 					debug.c
 SRC				= $(addprefix $(SRC_DIR), $(SRC_FILE))
 
