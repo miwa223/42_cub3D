@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:07:27 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/05 18:07:28 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/12 22:36:07 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,6 @@ size_t	get_max_value(size_t x, size_t y)
 		return (x);
 	else
 		return (y);
-}
-
-void	free_2d_array(char **content)
-{
-	int	i;
-
-	i = 0;
-	while (content[i] != NULL)
-	{
-		free(content[i]);
-		content[i] = NULL;
-		i++;
-	}
-	free(content);
-	content = NULL;
 }
 
 char	*ft_strjoin_new_line(char const *s1, char const *s2)
@@ -75,4 +60,38 @@ char	*ft_strchr_return_next_char(const char *s, int c)
 		i++;
 	}
 	return (NULL);
+}
+
+size_t	skip_spaces(char *line)
+{
+	size_t	i;
+
+	i = 0;
+	while (line[i] != '\0')
+	{
+		if (line[i] != ' ')
+			break ;
+		i++;
+	}
+	return (i);
+}
+
+char	**make_copy_map(t_data *data)
+{
+	char	**map_dup;
+	size_t	i;
+
+	map_dup = (char **)malloc(sizeof(char *) * (data->cubfile->map_row + 1));
+	if (!map_dup)
+		return (NULL);
+	i = 0;
+	while (i < data->cubfile->map_row)
+	{
+		map_dup[i] = ft_strdup(data->cubfile->map[i]);
+		if (!map_dup)
+			return (NULL);
+		i++;
+	}
+	map_dup[i] = NULL;
+	return (map_dup);
 }

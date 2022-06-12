@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:39:32 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/05 23:00:27 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/06 19:41:17 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int argc, char *argv[])
 	t_data	data;
 
 	is_valid_argv(argc, argv);
+	init_data(&data);
 	parse_cubfile(&data, argv[1]);
 	print_data(&data);
 	mlx_hook(data.mlx_win, 17, 0, close_window, &data);

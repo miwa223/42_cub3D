@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:09:38 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/05 23:34:29 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/12 19:50:56 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,76 +18,100 @@ void	parse_cubfile(t_data *data, char *file)
 	int	fd;
 
 	fd = open(file, O_RDONLY);
-	data->cubfile = (t_cubfile *)malloc(sizeof(t_cubfile));
-	if (!data->cubfile)
-		exit_program(MALLOC_FAIL);
-	init_mlx(data);
-	count_row_col(data->cubfile, fd);
+	get_info(data, fd);
+	if (!count_row_col(data->cubfile, fd))
+		exit_program(INVALID_MAP);
 	if (close(fd) == ERROR)
 	{
 		free_buf((void **)&(data->cubfile));
 		exit_program(CLOSE_FAIL);
 	}
-	get_map(data, file);
+	parse_map(data, file);
 }
 
-void	init_mlx(t_data *data)
-{
-	data->mlx = mlx_init();
-	if (!data->mlx)
-	{
-		free(data->cubfile);
-		exit_program(MLX_INIT_FAIL);
-	}
-	data->mlx_win = mlx_new_window(data->mlx, 1200, 720, "cub3D");
-	if (!data->mlx_win)
-	{
-		free(data->cubfile);
-		mlx_destroy_display(data->mlx);
-		exit_program(MLX_NEW_WINDOW_FAIL);
-	}
-}
-
-void	count_row_col(t_cubfile *file, int fd)
+void	get_info(t_data *data, int fd)
 {
 	char	*line;
 	int		status;
+	int		cnt;
+	char	**types;
 
-	file->map_row = 0;
-	file->map_col = 0;
 	status = 1;
+	cnt = 0;
+	types = set_types();
+	while (status != EOF_READ && cnt < NB_TYPE)
+	{
+		status = get_next_line(fd, &line);
+		if (ft_strlen(line) == 0)
+		{
+			if (cnt == 0)
+				exit_program(INVALID_CUBFILE);
+			continue ;
+		}
+		if (!check_type(data, line, types))
+			exit_program(INVALID_CUBFILE);
+		cnt++;
+	}
+	free(types);
+	if (!xpm_to_img(data))
+		exit_program(XPM_TO_IMG_FAIL);
+}
+
+char	**set_types(void)
+{
+	char	**types;
+
+	types = (char **)malloc(sizeof(char *) * NB_TYPE);
+	if (!types)
+		exit_program(MALLOC_FAIL);
+	types[0] = "NO";
+	types[1] = "SO";
+	types[2] = "WE";
+	types[3] = "EA";
+	types[4] = "F";
+	types[5] = "C";
+	return (types);
+}
+
+bool	check_type(t_data *data, char *line, char **types)
+{
+	int		i;
+
+	i = 0;
+	bool (*funcs[2])(t_data *, char *, int) = {parse_textures, parse_color};
+	while (i < NB_TYPE)
+	{
+		if (ft_strnstr(line, types[i], ft_strlen(types[i])))
+			return (funcs[i / 4](data, line, i));
+		i++;
+	}
+	return (false);
+}
+
+bool	count_row_col(t_cubfile *file, int fd)
+{
+	char	*line;
+	int		status;
+	int		cnt;
+
+	status = 1;
+	cnt = 0;
 	while (status != EOF_READ)
 	{
 		status = get_next_line(fd, &line);
+		if (ft_strlen(line) == 0)
+		{
+			free_buf((void **)&line);
+			if (cnt == 0 || status == EOF_READ)
+				continue ;
+			return (false);
+		}
 		file->map_row += 1;
 		file->map_col = get_max_value(file->map_col, ft_strlen(line));
 		free_buf((void **)&line);
+		cnt++;
 	}
-}
-
-void	get_map(t_data *data, char *file)
-{
-	int		fd;
-	size_t	i;
-
-	i = 0;
-	data->cubfile->map
-		= (char **)malloc(sizeof(char *) * data->cubfile->map_row);
-	if (!data->cubfile->map)
-	{
-		free_buf((void **)&(data->cubfile));
-		exit_program(MALLOC_FAIL);
-	}
-	fd = open(file, O_RDONLY);
-	while (i < data->cubfile->map_row)
-	{
-		get_next_line(fd, &data->cubfile->map[i]);
-		i++;
-	}
-	if (close(fd) == ERROR)
-	{
-		free_2d_array(data->cubfile->map);
-		free_buf((void **)&(data->cubfile));
-		exit_program(CLOSE_FAIL);
-	}
+	if (file->map_row <= 2 || file->map_col <= 2)
+		return (false);
+	return (true);
 }
