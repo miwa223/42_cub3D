@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:07:27 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/12 18:36:38 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/12 22:36:07 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,24 @@ size_t	skip_spaces(char *line)
 		i++;
 	}
 	return (i);
+}
+
+char	**make_copy_map(t_data *data)
+{
+	char	**map_dup;
+	size_t	i;
+
+	map_dup = (char **)malloc(sizeof(char *) * (data->cubfile->map_row + 1));
+	if (!map_dup)
+		return (NULL);
+	i = 0;
+	while (i < data->cubfile->map_row)
+	{
+		map_dup[i] = ft_strdup(data->cubfile->map[i]);
+		if (!map_dup)
+			return (NULL);
+		i++;
+	}
+	map_dup[i] = NULL;
+	return (map_dup);
 }

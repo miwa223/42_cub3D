@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:54:01 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/12 22:15:03 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/12 22:35:06 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 void	parse_map(t_data *data, char *file)
 {
 	int		fd;
+	char	**map_dup;
 
 	data->cubfile->map
-		= (char **)malloc(sizeof(char *) * data->cubfile->map_row);
+		= (char **)malloc(sizeof(char *) * (data->cubfile->map_row + 1));
 	if (!data->cubfile->map)
 		exit_program(MALLOC_FAIL);
 	fd = open(file, O_RDONLY);
@@ -27,9 +28,12 @@ void	parse_map(t_data *data, char *file)
 		exit_program(INVALID_MAP);
 	if (close(fd) == ERROR)
 		exit_program(CLOSE_FAIL);
-	if (!is_closed_by_wall(data->cubfile->map,
-			data->ppos.pos.x, data->ppos.pos.y, data))
+	map_dup = make_copy_map(data);
+	if (!map_dup)
+		exit_program(MALLOC_FAIL);
+	if (!is_closed_by_wall(map_dup, data->ppos.pos.x, data->ppos.pos.y, data))
 		exit_program(INVALID_MAP);
+	free_2d_array(map_dup);
 }
 
 void	read_through_type_info(int fd)
@@ -61,6 +65,7 @@ bool	read_map(t_data *data, int fd)
 			return (false);
 		i++;
 	}
+	data->cubfile->map[i] = NULL;
 	return (true);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:39:08 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/12 18:38:16 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/12 22:35:32 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ size_t	get_max_value(size_t x, size_t y);
 char	*ft_strjoin_new_line(char const *s1, char const *s2);
 char	*ft_strchr_return_next_char(const char *s, int c);
 size_t	skip_spaces(char *line);
+char	**make_copy_map(t_data *data);
 
 // free.c
 void	free_2d_array(char **content);
