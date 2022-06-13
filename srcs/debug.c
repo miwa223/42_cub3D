@@ -6,24 +6,14 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:38:19 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/10 10:57:45 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/13 09:14:44 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
+#include <stdio.h>
+#include "cub3d.h"
 
-void
-	print_map(t_data *data)
-{
-	int i;
-
-	i = 0;
-	while (data->map[i])
-	{
-		printf("%s\n", data->map[i]);
-		i++;
-	}
-}
 
 void
 	print_ray(t_ray ray)
@@ -61,21 +51,6 @@ void
 	printf("======================================\n\n");
 }
 
-void
-	print_data(t_data *data)
-{
-	printf("\n=== data =========================================\n");
-	printf("player\n");
-	printf("pos\n\tx: %lf\n\ty: %lf\n", \
-			data->player.pos.x, data->player.pos.y);
-	printf("dir\n\tx: %lf\n\ty: %lf\n", \
-			data->player.dir.x, data->player.dir.y);
-	printf("plane\n\tx: %lf\n\ty: %lf\n", \
-			data->player.plane.x, data->player.plane.y);
-	printf("status\n\tis_moving: %d\n\tis_rotating: %d\n", \
-			data->player.is_moving, data->player.is_rotating);
-	printf("\n====================================================\n");
-}
 
 void
 	print_image(t_image *img)
@@ -88,4 +63,49 @@ void
 	printf("width: %d\n", img->width);
 	printf("height: %d\n", img->height);
 	printf("\n====================================\n");
+}
+
+void	print_data(t_data *data)
+{
+	size_t	i;
+
+	i = 0;
+	if (!data)
+		return ;
+	if (data->cubfile)
+	{
+		printf("row: %zu, col: %zu\n",
+			data->cubfile->map_row, data->cubfile->map_col);
+		while (i < data->cubfile->map_row)
+			printf("m: %s\n", data->cubfile->map[i++]);
+	}
+}
+
+void
+	print_map(t_data *data)
+{
+	int i;
+
+	i = 0;
+	while (data->map[i])
+	{
+		printf("%s\n", data->map[i]);
+		i++;
+	}
+}
+
+void
+	print_da(t_data *data)
+{
+	printf("\n=== data =========================================\n");
+	printf("player\n");
+	printf("pos\n\tx: %lf\n\ty: %lf\n", \
+			data->player.pos.x, data->player.pos.y);
+	printf("dir\n\tx: %lf\n\ty: %lf\n", \
+			data->player.dir.x, data->player.dir.y);
+	printf("plane\n\tx: %lf\n\ty: %lf\n", \
+			data->player.plane.x, data->player.plane.y);
+	printf("status\n\tis_moving: %d\n\tis_rotating: %d\n", \
+			data->player.is_moving, data->player.is_rotating);
+	printf("\n====================================================\n");
 }

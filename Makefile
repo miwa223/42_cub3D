@@ -4,18 +4,21 @@ INCLUDES		= -I./includes
 CFLAGS			= -Wall -Werror -Wextra -MMD -MP $(INCLUDES)
 
 SRC_DIR			= srcs/
-SRC_FILE		:= main.c \
-				draw_wall.c \
-				error.c \
-				game.c \
-				init_player.c \
-				mlx_utils.c \
-				set_data.c \
-				vector.c \
-				wall_utils.c \
-				debug.c \
-				player.c \
-				hooks.c
+SRC_FILE		:= main.c validation.c init.c \
+					parse_cubfile.c parse_colors.c parse_textures.c parse_map.c \
+					utils.c get_next_line.c free.c exit.c \
+					debug.c \
+					draw_wall.c \
+					error.c \
+					game.c \
+					init_player.c \
+					mlx_utils.c \
+					set_data.c \
+					vector.c \
+					wall_utils.c \
+					debug.c \
+					player.c \
+					hooks.c
 SRC				= $(addprefix $(SRC_DIR), $(SRC_FILE))
 
 OBJ_DIR			= obj/
