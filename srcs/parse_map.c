@@ -95,10 +95,10 @@ bool	get_ppos(t_data *data, char *line, int row)
 	return (true);
 }
 
-bool	is_closed_by_wall(char **map, size_t row, size_t col, t_data *data)
+bool	is_closed_by_wall(char **map, int row, int col, t_data *data)
 {
-	if (row <= 0 || row >= data->cubfile->map_row
-		|| col <= 0 || col >= data->cubfile->map_col)
+	if (row < 0 || row >= (int)data->cubfile->map_row
+		|| col < 0 || col >= (int)data->cubfile->map_col)
 		return (false);
 	if (map[row][col] == ' ' || map[row][col] == '\0')
 		return (false);

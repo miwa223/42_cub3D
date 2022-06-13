@@ -35,18 +35,21 @@ bool	parse_textures(t_data *data, char *line, int i)
 bool	xpm_to_img(t_data *data)
 {
 	int		i;
-	int		pixel;
 	void	*tmp;
+	t_image	imgs[ALL_DIRECTION];
 
 	i = 0;
-	pixel = 64;
+	imgs[0] = data->tex_n;
+	imgs[1] = data->tex_s;
+	imgs[2] = data->tex_w;
+	imgs[3] = data->tex_e;
 	while (i < ALL_DIRECTION)
 	{
 		tmp = data->cubfile->textures[i];
-		data->cubfile->textures[i] = mlx_xpm_file_to_image(data->mlx,
-				tmp, &pixel, &pixel);
+		imgs[i].img = mlx_xpm_file_to_image(data->mlx,
+				tmp, &imgs[i].width, &imgs[i].height);
 		free_buf((void **)&tmp);
-		if (!data->cubfile->textures[i])
+		if (!imgs[i].img)
 		{
 			free_mlx(data, i);
 			return (false);

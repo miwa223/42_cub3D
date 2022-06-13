@@ -35,14 +35,14 @@ void	free_buf(void **buf)
 
 void	free_mlx(t_data *data, t_type type)
 {
-	int	i;
-
-	i = 0;
-	while (i < (int)type)
-	{
-		mlx_destroy_image(data->mlx, data->cubfile->textures[i]);
-		i++;
-	}
+	if (type >= 1)
+		mlx_destroy_image(data->mlx, data->tex_n.img);
+	if (type >= 2)
+		mlx_destroy_image(data->mlx, data->tex_s.img);
+	if (type >= 3)
+		mlx_destroy_image(data->mlx, data->tex_w.img);
+	if (type == 4)
+		mlx_destroy_image(data->mlx, data->tex_e.img);
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	mlx_destroy_display(data->mlx);
 }

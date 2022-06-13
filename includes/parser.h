@@ -39,6 +39,6 @@ void		parse_map(t_data *data, char *file);
 void		read_through_type_info(int fd);
 bool		read_map(t_data *data, int fd);
 bool		get_ppos(t_data *data, char *line, int row);
-bool		is_closed_by_wall(char **map, size_t row, size_t col, t_data *data);
+bool		is_closed_by_wall(char **map, int row, int col, t_data *data);
 
 #endif
