@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:54:01 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/12 22:35:06 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/13 13:54:30 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	parse_map(t_data *data, char *file)
 	map_dup = make_copy_map(data);
 	if (!map_dup)
 		exit_program(MALLOC_FAIL);
-	if (!is_closed_by_wall(map_dup, data->ppos.pos.x, data->ppos.pos.y, data))
+	if (!is_closed_by_wall(map_dup, data->player.pos.x, data->player.pos.y, data))
 		exit_program(INVALID_MAP);
 	free_2d_array(map_dup);
 }
@@ -82,11 +82,11 @@ bool	get_ppos(t_data *data, char *line, int row)
 	{
 		if (ft_strchr("NSWE", line[col]))
 		{
-			if (data->ppos.direction != ALL_DIRECTION)
+			if (data->player.direction != ALL_DIRECTION)
 				return (false);
-			data->ppos.pos.x = row;
-			data->ppos.pos.y = col;
-			data->ppos.direction = line[col];
+			data->player.pos.x = row;
+			data->player.pos.y = col;
+			data->player.direction = line[col];
 		}
 		else if (!ft_strchr(" 01", line[col]))
 			return (false);
@@ -97,8 +97,8 @@ bool	get_ppos(t_data *data, char *line, int row)
 
 bool	is_closed_by_wall(char **map, size_t row, size_t col, t_data *data)
 {
-	if (row < 0 || row >= data->cubfile->map_row
-		|| col < 0 || col >= data->cubfile->map_col)
+	if (row <= 0 || row >= data->cubfile->map_row
+		|| col <= 0 || col >= data->cubfile->map_col)
 		return (false);
 	if (map[row][col] == ' ' || map[row][col] == '\0')
 		return (false);

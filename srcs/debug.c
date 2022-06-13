@@ -6,14 +6,11 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:38:19 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/13 09:14:44 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/13 13:25:31 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ray.h"
-#include <stdio.h>
 #include "cub3d.h"
-
 
 void
 	print_ray(t_ray ray)

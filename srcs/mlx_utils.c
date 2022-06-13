@@ -6,11 +6,11 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 11:31:45 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/10 10:33:32 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/13 13:45:26 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ray.h"
+#include "cub3d.h"
 
 // mlx_pixel_put()はレンダリングを待たずに1ピクセルずつ描画するので激遅, なので同じ動きをする関数を自作する
 void
@@ -24,7 +24,7 @@ void
 }
 
 uint32_t
-	get_color(t_image img, int x, int y)
+	get_color_pix(t_image img, int x, int y)
 {
 	return *(uint32_t*)(img.addr +
 		(y * img.line_length + x * (img.bits_per_pixel / 8)));

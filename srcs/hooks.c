@@ -6,14 +6,14 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 10:09:27 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/09 10:16:48 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/13 14:04:31 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ray.h"
+#include "cub3d.h"
 
 int
-	close_window(t_data *data)
+	exit_window(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
 	exit(0);

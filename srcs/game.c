@@ -6,11 +6,11 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:22:38 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/10 10:34:26 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/13 13:27:12 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ray.h"
+#include "cub3d.h"
 
 static void
 	reset_img(t_image *img)

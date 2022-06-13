@@ -6,11 +6,11 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 09:47:58 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/09 10:39:21 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/13 13:27:55 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ray.h"
+#include "cub3d.h"
 
 static void
 	move_player(t_data *data)

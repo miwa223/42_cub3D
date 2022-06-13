@@ -6,11 +6,11 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 20:08:16 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/11 09:10:55 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/13 13:45:06 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ray.h"
+#include "cub3d.h"
 
 static void
 	init_ray(t_data *data, t_ray *ray, int x)
@@ -128,7 +128,7 @@ static void
 			if (wall->texture_y >= ray.tex->height)
 				wall->texture_y = ray.tex->height - 1;
 			wall->texture_pos_y += wall->step;
-			color = get_color(*ray.tex, wall->texture_x, wall->texture_y);
+			color = get_color_pix(*ray.tex, wall->texture_x, wall->texture_y);
 			my_mlx_pixel_put(&data->img, x, y, color);
 		}
 		y++;

@@ -6,11 +6,11 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 10:48:54 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/10 10:57:32 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/13 13:28:28 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ray.h"
+#include "cub3d.h"
  
 void
 	set_texture(t_data *data, t_ray *ray)

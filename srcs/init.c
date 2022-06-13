@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:29:30 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/12 18:34:53 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/13 13:51:51 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	init_data(t_data *data)
 
 	i = 0;
 	init_mlx(data);
-	data->ppos.direction = ALL_DIRECTION;
-	data->ppos.pos.x = 0;
-	data->ppos.pos.y = 0;
+	data->player.direction = ALL_DIRECTION;
+	data->player.pos.x = -1;
+	data->player.pos.y = -1;
 	data->cubfile = (t_cubfile *)malloc(sizeof(t_cubfile));
 	if (!data->cubfile)
 		exit_program(MALLOC_FAIL);
