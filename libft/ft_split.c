@@ -17,18 +17,43 @@ static size_t	get_size_of_array(char const *s, char c)
 {
 	size_t	i;
 	size_t	size;
+	bool	counted;
 
 	i = 0;
 	size = 0;
-	if (s[i] != c)
-		i++;
+	counted = false;
 	while (s[i] != '\0')
 	{
-		if (s[i] == c)
-			size++;
+		if (s[i] != c)
+		{
+			if (!counted)
+			{
+				size++;
+				counted = true;
+			}
+		}
+		else
+		{
+			if (counted)
+				counted = false;
+		}
 		i++;
 	}
 	return (size);
+}
+
+int	count_substr_len(char const *s, char c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			break ;
+		i++;
+	}
+	return (i);
 }
 
 static bool	malloc_error(char **ary, size_t ary_nb)
@@ -47,46 +72,48 @@ static bool	malloc_error(char **ary, size_t ary_nb)
 	return (true);
 }
 
-bool	split_lines(char **array, char const *line, char c)
+bool	split_lines(char **array, char const *line, char c, int size)
 {
 	int	i;
 	int	j;
+	int	cnt;
 	int	start;
 
 	i = 0;
 	j = 0;
+	cnt = 0;
 	start = 0;
-	while (line[i] != '\0')
+	while (line[i] != '\0' && j < size)
 	{
-		if (line[i] == c)
+		cnt = count_substr_len(&line[start], c);
+		if (cnt > 0)
 		{
-			array[j] = ft_substr(line, start, i - start);
+			array[j] = ft_substr(line, i, cnt);
 			if (malloc_error(array, j))
 				return (false);
+			start = i + cnt;
 			j++;
-			start = i + 1;
 		}
+		else
+			start = i + 1;
 		i++;
 	}
-	array[j] = ft_substr(line, start, i - start);
-	if (malloc_error(array, j))
-		return (false);
-	array[++j] = NULL;
+	array[j] = NULL;
 	return (true);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	size;
+	int		size;
 	char	**array;
 
 	if (s == NULL)
 		return (NULL);
 	size = get_size_of_array(s, c);
-	array = malloc(sizeof(char *) * (size + 1));
+	array = (char **)malloc(sizeof(char *) * (size + 1));
 	if (!array)
 		return (NULL);
-	if (!split_lines(array, s, c))
+	if (!split_lines(array, s, c, size))
 		return (NULL);
 	return (array);
 }
