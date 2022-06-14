@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:39:08 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/13 16:08:26 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/14 10:47:56 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ typedef struct	s_player {
 typedef struct s_data
 {
 	void		*mlx;
-	void		*mlx_win;
+	// void		*mlx_win;
 	t_cubfile	*cubfile;
 /* =============================== */
 	void		*win;
@@ -222,7 +222,8 @@ void print_map(t_data *data);
 void print_ray(t_ray ray);
 void print_wall(t_wall wall);
 void print_da(t_data *data);
-void print_image(t_image *img);
+void print_image(t_data *data);
+void print_info(t_data *data);
 /* player.c */
 void update_player(t_data *data);
 /* hook.c */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 18:36:26 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/12 19:03:17 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/14 10:49:17 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void	free_mlx(t_data *data, t_type type)
 		mlx_destroy_image(data->mlx, data->tex_w.img);
 	if (type == 4)
 		mlx_destroy_image(data->mlx, data->tex_e.img);
-	mlx_destroy_window(data->mlx, data->mlx_win);
+	// mlx_destroy_window(data->mlx, data->mlx_win);
 	mlx_destroy_display(data->mlx);
 }

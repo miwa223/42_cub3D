@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:22:38 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/13 13:27:12 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/14 10:56:42 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void
 	int		max_h;
 
 	mlx_get_screen_size(data->mlx, &max_w, &max_h);
-	printf("Display size\n\twidth: %d\n\theight: %d\n", max_w, max_h);
 	data->screen_width = MIN(data->screen_width, max_w);
 	data->screen_height = MIN(data->screen_height, max_h);
 	data->win = mlx_new_window(data->mlx, data->screen_width,
@@ -65,7 +64,6 @@ int
 	reset_img(&data->img);
 	draw_wall(data);
 	update_player(data);
-	// print_data(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	return (0);
 }

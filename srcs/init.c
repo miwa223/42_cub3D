@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:29:30 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/13 13:51:51 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/14 10:28:45 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ void	init_mlx(t_data *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		exit_program(MLX_INIT_FAIL);
+	/* 
 	data->mlx_win = mlx_new_window(data->mlx, 1200, 720, "cub3D");
 	if (!data->mlx_win)
 	{
 		mlx_destroy_display(data->mlx);
 		exit_program(MLX_NEW_WINDOW_FAIL);
 	}
+	*/
 }

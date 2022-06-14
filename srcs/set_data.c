@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 10:01:31 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/13 13:57:45 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/14 10:55:42 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void
 		}
 		if (read_image(data, tex, path) == ERROR)
 			return (put_err_msg("Failed to read texture"));
-		print_image(tex);
 		i++;
 	}
 }
