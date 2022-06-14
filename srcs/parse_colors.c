@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:30:44 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/13 13:43:42 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/14 23:14:36 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ bool	is_valid_num(char **s_nums, int *nums)
 		j = skip_spaces(s_nums[i]);
 		while (s_nums[i][j] != '\0' && ft_isdigit(s_nums[i][j]) == 1)
 			j++;
-		j += skip_spaces(&s_nums[i][j]);
+		if (i != 2)
+			j += skip_spaces(&s_nums[i][j]);
 		if (s_nums[i][j] != '\0')
 			return (false);
 		nums[i] = ft_atoi(s_nums[i], &overflow);
