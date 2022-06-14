@@ -56,6 +56,7 @@ void	get_info(t_data *data, int fd)
 		}
 		if (!check_type(data, line, types))
 			exit_program(INVALID_CUBFILE, data, 0);
+		free_buf((void **)&line);
 		cnt++;
 	}
 	free(types);

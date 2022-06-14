@@ -60,7 +60,10 @@ bool	read_map(t_data *data, int fd)
 	{
 		get_next_line(fd, &data->cubfile->map[i], data, ALL_DIRECTION);
 		if (ft_strlen(data->cubfile->map[i]) == 0)
+		{
+			free_buf((void **)&data->cubfile->map[i]);
 			continue ;
+		}
 		if (!get_ppos(data, data->cubfile->map[i], i))
 			return (false);
 		i++;
