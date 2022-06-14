@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:51:45 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/12 19:01:08 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/14 09:53:54 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,19 @@ bool	xpm_to_img(t_data *data)
 {
 	int		i;
 	void	*tmp;
-	t_image	imgs[ALL_DIRECTION];
+	t_image	*imgs[ALL_DIRECTION];
 
 	i = 0;
-	imgs[0] = data->tex_n;
-	imgs[1] = data->tex_s;
-	imgs[2] = data->tex_w;
-	imgs[3] = data->tex_e;
+	imgs[0] = &data->tex_n;
+	imgs[1] = &data->tex_s;
+	imgs[2] = &data->tex_w;
+	imgs[3] = &data->tex_e;
 	while (i < ALL_DIRECTION)
 	{
 		tmp = data->cubfile->textures[i];
-		imgs[i].img = mlx_xpm_file_to_image(data->mlx,
-				tmp, &imgs[i].width, &imgs[i].height);
+		read_image(data, imgs[i], tmp);
 		free_buf((void **)&tmp);
-		if (!imgs[i].img)
+		if (!imgs[i]->img)
 		{
 			free_mlx(data, i);
 			return (false);

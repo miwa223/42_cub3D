@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 09:55:32 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/13 14:00:04 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/14 08:54:29 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void
 	data->screen_height = 500;
 	data->ground_color = data->cubfile->colors[FLOOR];
 	data->sky_color = data->cubfile->colors[CELLING];
-	set_tex(data);
+	// set_tex(data);
 	data->horizon = 0;
 	data->map = data->cubfile->map;
 }
