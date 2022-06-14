@@ -39,7 +39,7 @@ bool	get_color(t_data *data, int index, char *line)
 		return (false);
 	s_nums = ft_split(line, ',');
 	if (!s_nums)
-		exit_program(MALLOC_FAIL);
+		exit_program(MALLOC_FAIL, data, 0);
 	while (s_nums[i] != NULL)
 		i++;
 	if (i == 3 && is_valid_num(s_nums, nums))

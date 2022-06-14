@@ -23,7 +23,7 @@ void	init_data(t_data *data)
 	data->player.pos.y = -1;
 	data->cubfile = (t_cubfile *)malloc(sizeof(t_cubfile));
 	if (!data->cubfile)
-		exit_program(MALLOC_FAIL);
+		exit_program(MALLOC_FAIL, data, 0);
 	while (i < ALL_DIRECTION)
 		data->cubfile->textures[i++] = NULL;
 	data->cubfile->colors[FLOOR] = 0;
@@ -35,15 +35,8 @@ void	init_data(t_data *data)
 
 void	init_mlx(t_data *data)
 {
+	data->win = NULL;
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		exit_program(MLX_INIT_FAIL);
-	/* 
-	data->mlx_win = mlx_new_window(data->mlx, 1200, 720, "cub3D");
-	if (!data->mlx_win)
-	{
-		mlx_destroy_display(data->mlx);
-		exit_program(MLX_NEW_WINDOW_FAIL);
-	}
-	*/
+		exit_program(MLX_INIT_FAIL, data, 0);
 }

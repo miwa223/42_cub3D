@@ -20,7 +20,7 @@ void	is_valid_argv(int argc, char **argv)
 	i = 0;
 	str = NULL;
 	if (argc != 2)
-		exit_program(INVALID_ARG);
+		exit_program(INVALID_ARG, NULL, 0);
 	while (argv[1][i] != '\0')
 	{
 		if (argv[1][i] == '.')
@@ -29,5 +29,5 @@ void	is_valid_argv(int argc, char **argv)
 	}
 	if (!str || ft_strlen(str) != 4
 		|| ft_strncmp(str, ".cub", 4) != 0)
-		exit_program(INVALID_ARG);
+		exit_program(INVALID_ARG, NULL, 0);
 }
