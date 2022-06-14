@@ -99,7 +99,6 @@ typedef struct	s_player {
 typedef struct s_data
 {
 	void		*mlx;
-	// void		*mlx_win;
 	t_cubfile	*cubfile;
 /* =============================== */
 	void		*win;
@@ -184,9 +183,10 @@ char	**make_copy_map(t_data *data);
 void	free_2d_array(char **content);
 void	free_buf(void **buf);
 void	free_mlx(t_data *data, t_type type);
+void	free_data(t_data *data);
 
 // exit.c
-void	exit_program(char *msg);
+void	exit_program(char *msg, t_data *data, t_type type);
 int		close_window(t_data *data);
 
 // debug.c
