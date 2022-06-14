@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 21:03:46 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/12 21:02:13 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/14 22:54:07 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,9 @@ bool	split_lines(char **array, char const *line, char c, int size)
 		if (cnt > 0)
 		{
 			array[j] = ft_substr(line, i, cnt);
-			if (malloc_error(array, j))
+			if (malloc_error(array, j++))
 				return (false);
 			start = i + cnt;
-			j++;
 		}
 		else
 			start = i + 1;

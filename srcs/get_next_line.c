@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 17:56:21 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/05 19:08:09 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/14 23:01:06 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	get_next_line(int fd, char **line, t_data *data, t_type type)
 	return (status);
 }
 
-bool	find_newline_in_save(char **save, char **line, t_data *data, t_type type)
+bool	find_newline_in_save(
+		char **save, char **line, t_data *data, t_type type)
 {
 	char	*after_newline;
 	char	*tmp;

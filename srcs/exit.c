@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:07:05 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/13 09:08:39 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/14 23:00:52 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	exit_program(char *msg, t_data *data, t_type type)
 {
 	size_t	msg_len;
-	
+
 	msg_len = ft_strlen(msg);
 	if (msg_len != ft_strlen(INVALID_ARG)
 		|| ft_strncmp(msg, INVALID_ARG, msg_len != 0))
