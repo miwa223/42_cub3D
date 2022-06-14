@@ -16,7 +16,7 @@
 # include <stdbool.h>
 
 # define FD_MAX 8192
-# define BUFFER_SIZE 16
+# define BUFFER_SIZE 100
 # define EOF_READ 0
 # define ERROR -1
 
