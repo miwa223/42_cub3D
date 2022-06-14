@@ -26,10 +26,7 @@ void	parse_cubfile(t_data *data, char *file)
 	if (!count_row_col(data, fd))
 		exit_program(INVALID_MAP, data, ALL_DIRECTION);
 	if (close(fd) == ERROR)
-	{
-		free_buf((void **)&(data->cubfile));
 		exit_program(CLOSE_FAIL, data, ALL_DIRECTION);
-	}
 	parse_map(data, file);
 }
 
@@ -50,6 +47,7 @@ void	get_info(t_data *data, int fd)
 		status = get_next_line(fd, &line, data, 0);
 		if (ft_strlen(line) == 0)
 		{
+			free_buf((void **)&line);
 			if (cnt == 0)
 				exit_program(INVALID_CUBFILE, data, 0);
 			continue ;
