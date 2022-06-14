@@ -21,22 +21,22 @@ void	parse_map(t_data *data, char *file)
 	data->cubfile->map
 		= (char **)malloc(sizeof(char *) * (data->cubfile->map_row + 1));
 	if (!data->cubfile->map)
-		exit_program(MALLOC_FAIL);
+		exit_program(MALLOC_FAIL, data, ALL_DIRECTION);
 	fd = open(file, O_RDONLY);
-	read_through_type_info(fd);
+	read_through_type_info(fd, data);
 	if (!read_map(data, fd))
-		exit_program(INVALID_MAP);
+		exit_program(INVALID_MAP, data, ALL_DIRECTION);
 	if (close(fd) == ERROR)
-		exit_program(CLOSE_FAIL);
+		exit_program(CLOSE_FAIL, data, ALL_DIRECTION);
 	map_dup = make_copy_map(data);
 	if (!map_dup)
-		exit_program(MALLOC_FAIL);
+		exit_program(MALLOC_FAIL, data, ALL_DIRECTION);
 	if (!is_closed_by_wall(map_dup, data->player.pos.x, data->player.pos.y, data))
-		exit_program(INVALID_MAP);
+		exit_program(INVALID_MAP, data, ALL_DIRECTION);
 	free_2d_array(map_dup);
 }
 
-void	read_through_type_info(int fd)
+void	read_through_type_info(int fd, t_data *data)
 {
 	char	*line;
 	size_t	i;
@@ -44,7 +44,7 @@ void	read_through_type_info(int fd)
 	i = 0;
 	while (i < NB_TYPE)
 	{
-		get_next_line(fd, &line);
+		get_next_line(fd, &line, data, ALL_DIRECTION);
 		if (ft_strlen(line) != 0)
 			i++;
 		free_buf((void **)&line);
@@ -58,9 +58,12 @@ bool	read_map(t_data *data, int fd)
 	i = 0;
 	while (i < data->cubfile->map_row)
 	{
-		get_next_line(fd, &data->cubfile->map[i]);
+		get_next_line(fd, &data->cubfile->map[i], data, ALL_DIRECTION);
 		if (ft_strlen(data->cubfile->map[i]) == 0)
+		{
+			free_buf((void **)&data->cubfile->map[i]);
 			continue ;
+		}
 		if (!get_ppos(data, data->cubfile->map[i], i))
 			return (false);
 		i++;

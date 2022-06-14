@@ -43,6 +43,14 @@ void	free_mlx(t_data *data, t_type type)
 		mlx_destroy_image(data->mlx, data->tex_w.img);
 	if (type == 4)
 		mlx_destroy_image(data->mlx, data->tex_e.img);
-	// mlx_destroy_window(data->mlx, data->mlx_win);
-	mlx_destroy_display(data->mlx);
+	if (data->win)
+		mlx_destroy_window(data->mlx, data->win);
+	if (data->mlx)
+		mlx_destroy_display(data->mlx);
+}
+
+void	free_data(t_data *data)
+{
+	free_2d_array(data->map);
+	free(data->cubfile);
 }

@@ -16,16 +16,17 @@
 void	parse_cubfile(t_data *data, char *file)
 {
 	int	fd;
+	int	status;
 
 	fd = open(file, O_RDONLY);
 	get_info(data, fd);
-	if (!count_row_col(data->cubfile, fd))
-		exit_program(INVALID_MAP);
+	status = xpm_to_img(data);
+	if (status != ALL_DIRECTION)
+		exit_program(XPM_TO_IMG_FAIL, data, status);
+	if (!count_row_col(data, fd))
+		exit_program(INVALID_MAP, data, ALL_DIRECTION);
 	if (close(fd) == ERROR)
-	{
-		free_buf((void **)&(data->cubfile));
-		exit_program(CLOSE_FAIL);
-	}
+		exit_program(CLOSE_FAIL, data, ALL_DIRECTION);
 	parse_map(data, file);
 }
 
@@ -39,22 +40,24 @@ void	get_info(t_data *data, int fd)
 	status = 1;
 	cnt = 0;
 	types = set_types();
+	if (!types)
+		exit_program(MALLOC_FAIL, data, 0);
 	while (status != EOF_READ && cnt < NB_TYPE)
 	{
-		status = get_next_line(fd, &line);
+		status = get_next_line(fd, &line, data, 0);
 		if (ft_strlen(line) == 0)
 		{
+			free_buf((void **)&line);
 			if (cnt == 0)
-				exit_program(INVALID_CUBFILE);
+				exit_program(INVALID_CUBFILE, data, 0);
 			continue ;
 		}
 		if (!check_type(data, line, types))
-			exit_program(INVALID_CUBFILE);
+			exit_program(INVALID_CUBFILE, data, 0);
+		free_buf((void **)&line);
 		cnt++;
 	}
 	free(types);
-	if (!xpm_to_img(data))
-		exit_program(XPM_TO_IMG_FAIL);
 }
 
 char	**set_types(void)
@@ -63,7 +66,7 @@ char	**set_types(void)
 
 	types = (char **)malloc(sizeof(char *) * NB_TYPE);
 	if (!types)
-		exit_program(MALLOC_FAIL);
+		return (NULL);
 	types[0] = "NO";
 	types[1] = "SO";
 	types[2] = "WE";
@@ -88,7 +91,7 @@ bool	check_type(t_data *data, char *line, char **types)
 	return (false);
 }
 
-bool	count_row_col(t_cubfile *file, int fd)
+bool	count_row_col(t_data *data, int fd)
 {
 	char	*line;
 	int		status;
@@ -98,7 +101,7 @@ bool	count_row_col(t_cubfile *file, int fd)
 	cnt = 0;
 	while (status != EOF_READ)
 	{
-		status = get_next_line(fd, &line);
+		status = get_next_line(fd, &line, data, ALL_DIRECTION);
 		if (ft_strlen(line) == 0)
 		{
 			free_buf((void **)&line);
@@ -106,12 +109,12 @@ bool	count_row_col(t_cubfile *file, int fd)
 				continue ;
 			return (false);
 		}
-		file->map_row += 1;
-		file->map_col = get_max_value(file->map_col, ft_strlen(line));
+		data->cubfile->map_row += 1;
+		data->cubfile->map_col = get_max_value(data->cubfile->map_col, ft_strlen(line));
 		free_buf((void **)&line);
 		cnt++;
 	}
-	if (file->map_row <= 2 || file->map_col <= 2)
+	if (data->cubfile->map_row <= 2 || data->cubfile->map_col <= 2)
 		return (false);
 	return (true);
 }

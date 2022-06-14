@@ -27,12 +27,12 @@ bool	parse_textures(t_data *data, char *line, int i)
 		data->cubfile->textures[i]
 			= ft_substr(line, start, ft_strlen(line) - start);
 		if (!data->cubfile->textures[i])
-			exit_program(MALLOC_FAIL);
+			exit_program(MALLOC_FAIL, data, 0);
 	}
 	return (true);
 }
 
-bool	xpm_to_img(t_data *data)
+int	xpm_to_img(t_data *data)
 {
 	int		i;
 	void	*tmp;
@@ -49,11 +49,8 @@ bool	xpm_to_img(t_data *data)
 		read_image(data, imgs[i], tmp);
 		free_buf((void **)&tmp);
 		if (!imgs[i]->img)
-		{
-			free_mlx(data, i);
-			return (false);
-		}
+			break ;
 		i++;
 	}
-	return (true);
+	return (i);
 }

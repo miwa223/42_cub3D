@@ -12,8 +12,14 @@
 
 #include "cub3d.h"
 
-void	exit_program(char *msg)
+void	exit_program(char *msg, t_data *data, t_type type)
 {
+	size_t	msg_len;
+	
+	msg_len = ft_strlen(msg);
+	if (msg_len != ft_strlen(INVALID_ARG)
+		|| ft_strncmp(msg, INVALID_ARG, msg_len != 0))
+		free_mlx(data, type);
 	ft_putstr_fd("Error\n", 2);
 	ft_putendl_fd(msg, 2);
 	exit(EXIT_FAILURE);
@@ -22,7 +28,6 @@ void	exit_program(char *msg)
 int	close_window(t_data *data)
 {
 	free_mlx(data, ALL_DIRECTION);
-	free_2d_array(data->cubfile->map);
-	free(data->cubfile);
+	free_data(data);
 	exit(EXIT_SUCCESS);
 }

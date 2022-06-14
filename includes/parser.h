@@ -22,11 +22,11 @@ void		parse_cubfile(t_data *data, char *file);
 void		get_info(t_data *data, int fd);
 bool		check_type(t_data *data, char *line, char **types);
 char		**set_types(void);
-bool		count_row_col(t_cubfile *file, int fd);
+bool		count_row_col(t_data *data, int fd);
 
 // parse_textures.c
 bool		parse_textures(t_data *data, char *line, int i);
-bool		xpm_to_img(t_data *data);
+int 		xpm_to_img(t_data *data);
 
 // parse_colors.c
 bool		parse_color(t_data *data, char *line, int i);
@@ -36,7 +36,7 @@ uint32_t	rgb_to_hex(int red, int green, int blue);
 
 // parse_map.c
 void		parse_map(t_data *data, char *file);
-void		read_through_type_info(int fd);
+void		read_through_type_info(int fd, t_data *data);
 bool		read_map(t_data *data, int fd);
 bool		get_ppos(t_data *data, char *line, int row);
 bool		is_closed_by_wall(char **map, int row, int col, t_data *data);
