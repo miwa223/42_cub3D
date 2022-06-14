@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:54:01 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/13 13:54:30 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/14 22:56:11 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	parse_map(t_data *data, char *file)
 	map_dup = make_copy_map(data);
 	if (!map_dup)
 		exit_program(MALLOC_FAIL, data, ALL_DIRECTION);
-	if (!is_closed_by_wall(map_dup, data->player.pos.x, data->player.pos.y, data))
+	if (!is_closed_by_wall(
+			map_dup, data->player.pos.x, data->player.pos.y, data))
 		exit_program(INVALID_MAP, data, ALL_DIRECTION);
 	free_2d_array(map_dup);
 }

@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:04:07 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/05 18:04:08 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/14 22:49:35 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 # define ERROR -1
 
 int		get_next_line(int fd, char **line, t_data *data, t_type type);
-bool	find_newline_in_save(char **save, char **line, t_data *data, t_type type);
+bool	find_newline_in_save(
+			char **save, char **line, t_data *data, t_type type);
 int		get_line(char **save, char **line, int fd);
 bool	store_nextline_in_save(char **save, char *buf);
 bool	buf_to_line(char **line, char *buf, char **save);

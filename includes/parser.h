@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:04:49 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/13 13:43:07 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/14 22:59:12 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 
 // parse_cubfiles.c
 void		parse_cubfile(t_data *data, char *file);
-void		get_info(t_data *data, int fd);
-bool		check_type(t_data *data, char *line, char **types);
 char		**set_types(void);
+void		get_info(t_data *data, int fd, char **types);
+bool		check_type(t_data *data, char *line, char **types);
 bool		count_row_col(t_data *data, int fd);
 
 // parse_textures.c
 bool		parse_textures(t_data *data, char *line, int i);
-int 		xpm_to_img(t_data *data);
+int			xpm_to_img(t_data *data);
 
 // parse_colors.c
 bool		parse_color(t_data *data, char *line, int i);

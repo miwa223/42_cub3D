@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:38:19 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/14 11:05:15 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/14 23:03:21 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,22 +71,6 @@ void
 		printf("width: %d\n", img[i].width);
 		printf("height: %d\n", img[i].height);
 		printf("=====================================\n\n");
-	}
-}
-
-void	print_data(t_data *data)
-{
-	size_t	i;
-
-	i = 0;
-	if (!data)
-		return ;
-	if (data->cubfile)
-	{
-		printf("row: %zu, col: %zu\n",
-			data->cubfile->map_row, data->cubfile->map_col);
-		while (i < data->cubfile->map_row)
-			printf("m: %s\n", data->cubfile->map[i++]);
 	}
 }
 
