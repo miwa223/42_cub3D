@@ -18,7 +18,6 @@ SRC_FILE		:= main.c validation.c init.c \
 					debug.c \
 					player.c \
 					hooks.c \
-					convert_info.c \
 					math_utils.c \
 					debug_ray.c
 SRC				= $(addprefix $(SRC_DIR), $(SRC_FILE))
@@ -68,9 +67,9 @@ fclean: clean
 re: fclean all
 
 run:
-	./$(NANE) ./cubfiles/test.cub
+	./cub3D ./cubfiles/test.cub
 
 bonus: all
 
 -include $(DEPEND)
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re bonus run

@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:39:08 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/15 10:10:59 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/15 13:56:16 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,15 +102,12 @@ typedef struct s_data
 	int			screen_width;
 	int			screen_height;
 	double		horizon;
-	uint32_t	sky_color;
-	uint32_t	ground_color;
 	t_image		tex_n;
 	t_image		tex_s;
 	t_image		tex_w;
 	t_image		tex_e;
 	int			tex_width;
 	int			tex_height;
-	char		**map;
 }	t_data;
 
 typedef struct s_ray {
@@ -206,8 +203,6 @@ void		update_player(t_data *data);
 int			exit_window(t_data *data);
 int			key_press(int keycode, t_data *data);
 int			key_release(int keycode, t_data *data);
-/* convert_info.c */
-void		convert_info(t_data *data);
 /* math_utils.c */
 int			max(int a, int b);
 int			min(int a, int b);

@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 09:47:58 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/15 10:08:50 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/15 13:42:12 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ static void
 			* data->player.dir.x * MOVE_P;
 		if (new_x < 0)
 			new_x = 0;
-		if (data->map[(int)data->player.pos.y][(int)new_x] != '1')
+		if (data->cubfile->map[(int)data->player.pos.y][(int)new_x] != '1')
 			data->player.pos.x = new_x;
 		new_y = data->player.pos.y + data->player.is_moving \
 			* data->player.dir.y * MOVE_P;
 		if (new_y < 0)
 			new_y = 0;
-		if (data->map[(int)new_y][(int)data->player.pos.x] != '1')
+		if (data->cubfile->map[(int)new_y][(int)data->player.pos.x] != '1')
 			data->player.pos.y = new_y;
 	}
 }
@@ -65,13 +65,13 @@ static void
 			* perp.x * MOVE_P;
 		if (new_x < 0)
 			new_x = 0;
-		if (data->map[(int)data->player.pos.y][(int)new_x] != '1')
+		if (data->cubfile->map[(int)data->player.pos.y][(int)new_x] != '1')
 			data->player.pos.x = new_x;
 		new_y = data->player.pos.y + data->player.is_sidling \
 			* perp.y * MOVE_P;
 		if (new_y < 0)
 			new_y = 0;
-		if (data->map[(int)new_y][(int)data->player.pos.x] != '1')
+		if (data->cubfile->map[(int)new_y][(int)data->player.pos.x] != '1')
 			data->player.pos.y = new_y;
 	}
 }

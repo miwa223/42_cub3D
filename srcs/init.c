@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:29:30 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/14 10:28:45 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/15 12:42:25 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,6 @@ void	init_mlx(t_data *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		exit_program(MLX_INIT_FAIL, data, 0);
+	data->screen_width = 850;
+	data->screen_height = 500;
 }

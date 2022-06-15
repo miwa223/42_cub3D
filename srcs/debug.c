@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:38:19 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/15 09:04:54 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/15 12:36:34 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void
 	int	i;
 
 	i = 0;
-	while (data->map[i])
+	while (data->cubfile->map[i])
 	{
-		printf("%s\n", data->map[i]);
+		printf("%s\n", data->cubfile->map[i]);
 		i++;
 	}
 }
@@ -59,8 +59,8 @@ void
 	printf("screen_w: %d screen_h: %d\n", \
 		data->screen_width, data->screen_height);
 	printf("horizon: %lf\n", data->horizon);
-	printf("sky_color: %x\n", data->sky_color);
-	printf("ground_color: %x\n", data->ground_color);
+	printf("sky_color: %x\n", data->cubfile->colors[CELLING]);
+	printf("ground_color: %x\n", data->cubfile->colors[FLOOR]);
 	printf("player\n");
 	printf("pos\n\tx: %lf\n\ty: %lf\n", \
 			data->player.pos.x, data->player.pos.y);
