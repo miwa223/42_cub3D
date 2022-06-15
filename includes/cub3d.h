@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:39:08 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/15 18:47:52 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/15 18:50:52 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ void		put_err_msg(char *msg);
 void		set_screen(t_data *data);
 int			main_loop(t_data *data);
 /* init_player.c */
-void		init_player(t_player *player, double x, double y, char dir);
+void		init_player(t_player *player, char dir);
 /* mlx_utils.c */
 void		my_mlx_pixel_put(t_image *img, int x, int y, int color);
 int			read_image(t_data *data, t_image *img, char *filepath);
