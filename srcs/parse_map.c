@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:54:01 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/14 22:56:11 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/15 18:36:55 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ bool	get_ppos(t_data *data, char *line, int row)
 		{
 			if (data->player.direction != ALL_DIRECTION)
 				return (false);
-			data->player.pos.x = row;
-			data->player.pos.y = col;
+			data->player.pos.x = col + 0.5;
+			data->player.pos.y = row + 0.5;
 			data->player.direction = line[col];
 		}
 		else if (!ft_strchr(" 01", line[col]))
