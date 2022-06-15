@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 20:08:16 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/13 13:45:06 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/15 09:02:06 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,16 +138,15 @@ static void
 void
 	draw_wall(t_data *data)
 {
-	int x;
-	t_ray ray;
-	t_wall wall;
+	int		x;
+	t_ray	ray;
+	t_wall	wall;
 
 	x = 0;
 	while (x < data->screen_width)
 	{
 		init_ray(data, &ray, x);
 		raycast(data, &ray);
-		// data->z_buffer[x] = ray.perp_wall_dist;
 		cal_screen_info(data, ray, &wall);
 		// print_ray(ray);
 		// print_wall(wall);

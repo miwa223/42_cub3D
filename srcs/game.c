@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:22:38 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/14 10:56:42 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/15 08:49:38 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void
 	mlx_get_screen_size(data->mlx, &max_w, &max_h);
 	data->screen_width = MIN(data->screen_width, max_w);
 	data->screen_height = MIN(data->screen_height, max_h);
-	data->win = mlx_new_window(data->mlx, data->screen_width,
+	data->win = mlx_new_window(data->mlx, data->screen_width, \
 		data->screen_height, "cub3D");
-	data->img.img = mlx_new_image(data->mlx, data->screen_width,
+	data->img.img = mlx_new_image(data->mlx, data->screen_width, \
 		data->screen_height);
-	data->img.addr = mlx_get_data_addr(data->img.img,
+	data->img.addr = mlx_get_data_addr(data->img.img, \
 		&data->img.bits_per_pixel, &data->img.line_length, &data->img.endian);
 	data->img.width = data->screen_width;
 	data->img.height = data->screen_height;

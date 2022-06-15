@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:39:08 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/14 10:47:56 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/15 09:07:20 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ typedef struct s_data
 {
 	void		*mlx;
 	t_cubfile	*cubfile;
-/* =============================== */
 	void		*win;
 	t_player	player;
 	t_image		img;
