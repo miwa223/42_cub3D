@@ -3,7 +3,7 @@ EA ./textures/eagle.xpm
 C 225,30,0
 WE ./textures/greystone.xpm
 SO ./textures/redbrick.xpm
-F   25 5 , 0 , 255
+F   255 , 0 , 255
 WE ./textures/greystone.xpm
 
 
