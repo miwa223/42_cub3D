@@ -46,7 +46,9 @@ e_output_test "./cub3D cubfiles/error_case/map_extra_tail_newline_e.cub" "map"
 # e_output_test "./cub3D cubfiles/error_case/map_too_big_e.cub" "map"
 
 # open error
+chmod 000 cubfiles/error_case/open_no_permission_e.cub
 e_output_test "./cub3D cubfiles/error_case/open_no_permission_e.cub" "open"
+chmod 755 cubfiles/error_case/open_no_permission_e.cub
 
 # read error
 e_output_test "./cub3D cubfiles/error_case/read_is_dir_e.cub" "read"
