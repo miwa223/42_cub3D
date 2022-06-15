@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:13:54 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/15 09:01:46 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/15 18:46:13 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,8 @@ static void
 }
 
 void
-	init_player(t_player *player, double x, double y, char dir)
+	init_player(t_player *player, char dir)
 {
-	player->pos.x = x;
-	player->pos.y = y;
 	init_player_dir(player, dir);
 	player->is_moving = 0;
 	player->is_sidling = 0;

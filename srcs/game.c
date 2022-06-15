@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:22:38 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/15 13:23:30 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/15 18:47:06 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ void
 	data->img.height = data->screen_height;
 	data->tex_width = data->tex_n.width;
 	data->tex_height = data->tex_n.height;
-	init_player(&data->player, \
-		data->player.pos.x, data->player.pos.y, data->player.direction);
+	init_player(&data->player, data->player.direction);
 	plane_length = vec_length(data->player.plane);
 	data->horizon = (double)data->screen_width * (1 / (2 * plane_length));
 	mlx_do_key_autorepeaton(data->mlx);

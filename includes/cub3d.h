@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:39:08 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/15 13:56:16 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/15 18:47:52 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,10 +190,11 @@ void		vec_rotate(t_vec2 *vec, double rad);
 /* wall_utils.c */
 void		set_wall_color(t_data *data, t_ray *ray);
 void		set_texture(t_data *data, t_ray *ray);
-/* debug.c */
-void		print_map(t_data *data);
+/* debug_ray.c */
 void		print_ray(t_ray ray);
 void		print_wall(t_wall wall);
+/* debug.c */
+void		print_map(t_data *data);
 void		print_da(t_data *data);
 void		print_image(t_data *data);
 void		print_info(t_data *data);
