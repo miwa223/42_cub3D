@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 09:47:58 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/13 13:27:55 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/15 10:08:50 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ static void
 	rotate_player(t_data *data)
 {
 	double	rot_speed;
+	double	rotate_rad;
 
+	rotate_rad = M_PI / 300;
 	if (data->player.is_rotating)
 	{
-		rot_speed = data->player.is_rotating * ROTATE_RAD;
+		rot_speed = data->player.is_rotating * rotate_rad;
 		vec_rotate(&data->player.dir, rot_speed);
 		vec_rotate(&data->player.plane, rot_speed);
 	}

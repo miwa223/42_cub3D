@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:39:08 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/15 09:40:52 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/15 10:10:59 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,10 @@
 # include "../mlx/mlx_int.h"
 # include "../libft/libft.h"
 
-// # define MAX(a, b)	((a > b) ? a : b)
-// # define MIN(a, b)	((a < b) ? a : b)
 # define ERROR	-1
 # define MAX_MAP_W 200
 # define MAX_MAP_H 200
 # define MOVE_P (0.033)
-// # define ROTATE_RAD (M_PI / 300)
 
 # define KEY_A			97
 # define KEY_S			115
@@ -211,5 +208,8 @@ int			key_press(int keycode, t_data *data);
 int			key_release(int keycode, t_data *data);
 /* convert_info.c */
 void		convert_info(t_data *data);
+/* math_utils.c */
+int			max(int a, int b);
+int			min(int a, int b);
 
 #endif
