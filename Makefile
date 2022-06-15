@@ -13,13 +13,13 @@ SRC_FILE		:= main.c validation.c init.c \
 					game.c \
 					init_player.c \
 					mlx_utils.c \
-					set_data.c \
 					vector.c \
 					wall_utils.c \
 					debug.c \
 					player.c \
 					hooks.c \
-					convert_info.c
+					convert_info.c \
+					math_utils.c
 SRC				= $(addprefix $(SRC_DIR), $(SRC_FILE))
 
 OBJ_DIR			= obj/
