@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:39:32 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/14 11:33:24 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/15 13:50:31 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	main(int argc, char *argv[])
 	is_valid_argv(argc, argv);
 	init_data(&data);
 	parse_cubfile(&data, argv[1]);
-	convert_info(&data);
 	set_screen(&data);
 	print_info(&data);
 	mlx_hook(data.win, KeyPress, KeyPressMask, key_press, &data);

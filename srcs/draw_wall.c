@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 20:08:16 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/15 11:11:10 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/15 12:38:14 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void
 static void
 	raycast(t_data *data, t_ray *ray)
 {
-	while (data->map[ray->map_y][ray->map_x] != '1')
+	while (data->cubfile->map[ray->map_y][ray->map_x] != '1')
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
@@ -102,9 +102,9 @@ static void
 	while (y < data->screen_height)
 	{
 		if (y <= data->screen_height / 2)
-			my_mlx_pixel_put(&data->img, x, y, data->sky_color);
+			my_mlx_pixel_put(&data->img, x, y, data->cubfile->colors[FLOOR]);
 		else
-			my_mlx_pixel_put(&data->img, x, y, data->ground_color);
+			my_mlx_pixel_put(&data->img, x, y, data->cubfile->colors[CELLING]);
 		if (y >= wall->draw_start && y < wall->draw_end)
 		{
 			wall->texture_y = (int)wall->texture_pos_y;

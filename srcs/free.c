@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 18:36:26 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/14 23:00:28 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/15 13:48:50 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ void	free_mlx(t_data *data, t_type type)
 
 void	free_data(t_data *data)
 {
-	free_2d_array(data->map);
+	free_2d_array(data->cubfile->map);
 	free(data->cubfile);
 }
