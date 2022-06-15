@@ -51,5 +51,4 @@ e_output_test "./cub3D cubfiles/error_case/open_no_permission_e.cub" "open"
 # read error
 e_output_test "./cub3D cubfiles/error_case/read_is_dir_e.cub" "read"
 
-pwd
-rm -r results
+rm -r test/results
