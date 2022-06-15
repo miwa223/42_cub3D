@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 20:08:16 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/15 09:44:15 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/15 11:11:10 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void
 static void
 	raycast(t_data *data, t_ray *ray)
 {
-	while (data->map[ray->map_x][ray->map_y] != '1')
+	while (data->map[ray->map_y][ray->map_x] != '1')
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
