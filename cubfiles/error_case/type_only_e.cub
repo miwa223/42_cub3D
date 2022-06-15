@@ -3,7 +3,7 @@ EA ./textures/eagle.xpm
 C 225,30,0
 WE ./textures/greystone.xpm
 F   255 , 0 , 255
-WE ./textures/greystone.xpm
+SO
 
 
 111111
