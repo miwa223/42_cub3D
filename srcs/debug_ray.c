@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 09:04:25 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/15 09:04:47 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/15 11:21:22 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void
 	printf("draw_start: %d\n", wall.draw_start);
 	printf("draw_end: %d\n", wall.draw_end);
 	printf("wall_x: %lf\n", wall.wall_x);
-	printf("texture_x: %lf\n", wall.texture_x);
+	printf("texture_x: %d\n", wall.texture_x);
 	printf("step: %lf\n", wall.step);
 	printf("texture_pos_y: %lf\n", wall.texture_pos_y);
 	printf("texture_y: %d\n", wall.texture_y);

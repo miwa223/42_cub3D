@@ -19,7 +19,8 @@ SRC_FILE		:= main.c validation.c init.c \
 					player.c \
 					hooks.c \
 					convert_info.c \
-					math_utils.c
+					math_utils.c \
+					debug_ray.c
 SRC				= $(addprefix $(SRC_DIR), $(SRC_FILE))
 
 OBJ_DIR			= obj/
@@ -67,7 +68,7 @@ fclean: clean
 re: fclean all
 
 run:
-	$(NANE) ./cubfiles/normal.cub
+	./$(NANE) ./cubfiles/test.cub
 
 bonus: all
 
