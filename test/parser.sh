@@ -9,6 +9,7 @@ e_output_test "./cub3D cubfiles/error_case/normal.cub invalarg" "arg"
 e_output_test "./cub3D cubfiles/error_case/invalid_extension.cubn" "arg"
 e_output_test "./cub3D cubfiles/error_case/wrong_extension.com" "arg"
 e_output_test "./cub3D cubfiles/error_case/non_extension" "arg"
+e_output_test "./cub3D cubfiles/error_case/.cub" "arg"
 
 # empty file error
 e_output_test "./cub3D cubfiles/error_case/empty_e.cub" "cubfile"
@@ -53,7 +54,7 @@ e_output_test "./cub3D cubfiles/error_case/map_wrong_num_e.cub" "map"
 e_output_test "./cub3D cubfiles/error_case/map_multi_player_e.cub" "map"
 e_output_test "./cub3D cubfiles/error_case/map_extra_tail_newline_e.cub" "map"
 e_output_test "./cub3D cubfiles/error_case/map_non_e.cub" "map"
-# e_output_test "./cub3D cubfiles/error_case/map_too_big_e.cub" "map"
+e_output_test "./cub3D cubfiles/error_case/map_too_big_e.cub" "map"
 
 # open error
 # *error type would change depends on the machine you are using
