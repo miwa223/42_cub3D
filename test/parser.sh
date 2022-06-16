@@ -21,7 +21,7 @@ e_output_test "./cub3D cubfiles/error_case/type_extra_head_newline_e.cub" "cubfi
 e_output_test "./cub3D cubfiles/error_case/type_with_spaces_e.cub" "cubfile"
 e_output_test "./cub3D cubfiles/error_case/type_only_e.cub" "cubfile"
 e_output_test "./cub3D cubfiles/error_case/type_non_e.cub" "cubfile"
-e_output_test "./cub3D cubfiles/error_case/type_same_path_e.cub" "cubfile"
+e_output_test "./cub3D cubfiles/error_case/type_duplicate_path_e.cub" "cubfile"
 
 # xpm error
 e_output_test "./cub3D cubfiles/error_case/xpm_nonexist_e.cub" "xpm"
@@ -41,6 +41,7 @@ e_output_test "./cub3D cubfiles/error_case/color_intmin_e.cub" "cubfile"
 e_output_test "./cub3D cubfiles/error_case/color_with_spaces_e.cub" "cubfile"
 e_output_test "./cub3D cubfiles/error_case/color_extra_head_comma_e.cub" "cubfile"
 e_output_test "./cub3D cubfiles/error_case/color_extra_tail_comma_e.cub" "cubfile"
+e_output_test "./cub3D cubfiles/error_case/color_duplicate_e.cub" "cubfile"
 
 # order error
 e_output_test "./cub3D cubfiles/error_case/order_map_not_last_e.cub" "cubfile"
@@ -59,6 +60,8 @@ e_output_test "./cub3D cubfiles/error_case/map_non_e.cub" "map"
 chmod 000 cubfiles/error_case/open_no_permission_e.cub
 e_output_test "./cub3D cubfiles/error_case/open_no_permission_e.cub" "open"
 chmod 755 cubfiles/error_case/open_no_permission_e.cub
-e_output_test "./cub3D cubfiles/error_case/open_is_dir_e.cub" "open"
+
+# read error
+e_output_test "./cub3D cubfiles/error_case/read_is_dir_e.cub" "read"
 
 rm -r test/results

@@ -1,10 +1,9 @@
 NO ./textures/bluestone.xpm
 EA ./textures/eagle.xpm
-C 225,30,0
+C 255,255,255
 WE ./textures/greystone.xpm
-F   255 , 0 , 255
-./textures/barrel.xpm
-
+SO ./textures/redbrick.xpm
+F   255 , 255,  255
 
 111111
 100101
