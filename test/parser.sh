@@ -58,8 +58,6 @@ e_output_test "./cub3D cubfiles/error_case/map_non_e.cub" "map"
 chmod 000 cubfiles/error_case/open_no_permission_e.cub
 e_output_test "./cub3D cubfiles/error_case/open_no_permission_e.cub" "open"
 chmod 755 cubfiles/error_case/open_no_permission_e.cub
-
-# read error
-e_output_test "./cub3D cubfiles/error_case/read_is_dir_e.cub" "read"
+e_output_test "./cub3D cubfiles/error_case/open_is_dir_e.cub" "open"
 
 rm -r test/results
