@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:30:44 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/14 23:14:36 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/16 20:15:33 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool	parse_color(t_data *data, char *line, int i)
 {
 	size_t	start;
 
-	if (data->cubfile->colors[i - 4] || line[1] == '\0')
+	if (data->cubfile->colors[i - 4] != RGB_MAX + 1 || line[1] == '\0')
 		return (false);
 	else
 	{
@@ -46,6 +46,8 @@ bool	get_color(t_data *data, int index, char *line)
 	{
 		data->cubfile->colors[index] = rgb_to_hex(nums[0], nums[1], nums[2]);
 		free_2d_array(s_nums);
+		if (!is_unique_color(data, index))
+			return (false);
 		return (true);
 	}
 	free_2d_array(s_nums);
@@ -82,4 +84,17 @@ bool	is_valid_num(char **s_nums, int *nums)
 uint32_t	rgb_to_hex(int red, int green, int blue)
 {
 	return (((red & 0xff) << 16) + ((green & 0xff) << 8) + (blue & 0xff));
+}
+
+bool	is_unique_color(t_data *data, int index)
+{
+	int	j;
+
+	j = 0;
+	if (index == 0)
+		j = 1;
+	if (data->cubfile->colors[j] != RGB_MAX + 1
+		&& data->cubfile->colors[index] == data->cubfile->colors[j])
+		return (false);
+	return (true);
 }

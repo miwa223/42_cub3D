@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:29:30 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/15 12:42:25 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/16 20:13:39 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	init_data(t_data *data)
 		exit_program(MALLOC_FAIL, data, 0);
 	while (i < ALL_DIRECTION)
 		data->cubfile->textures[i++] = NULL;
-	data->cubfile->colors[FLOOR] = 0;
-	data->cubfile->colors[CELLING] = 0;
+	data->cubfile->colors[FLOOR] = RGB_MAX + 1;
+	data->cubfile->colors[CELLING] = RGB_MAX + 1;
 	data->cubfile->map_row = 0;
 	data->cubfile->map_col = 0;
 	data->cubfile->map = NULL;
