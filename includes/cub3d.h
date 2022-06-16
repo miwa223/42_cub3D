@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:39:08 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/16 20:03:40 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/16 23:54:06 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdint.h>
 # include <math.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include "../mlx/mlx.h"
 # include "../mlx/mlx_int.h"
 # include "../libft/libft.h"
@@ -142,6 +143,7 @@ typedef struct s_wall
 
 // validation.c
 void		is_valid_argv(int argc, char **argv);
+bool		is_extension(char *arg, int i);
 
 // init.c
 void		init_data(t_data *data);

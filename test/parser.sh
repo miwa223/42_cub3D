@@ -9,6 +9,7 @@ e_output_test "./cub3D cubfiles/error_case/normal.cub invalarg" "arg"
 e_output_test "./cub3D cubfiles/error_case/invalid_extension.cubn" "arg"
 e_output_test "./cub3D cubfiles/error_case/wrong_extension.com" "arg"
 e_output_test "./cub3D cubfiles/error_case/non_extension" "arg"
+e_output_test "./cub3D cubfiles/error_case/.cub" "arg"
 
 # empty file error
 e_output_test "./cub3D cubfiles/error_case/empty_e.cub" "cubfile"

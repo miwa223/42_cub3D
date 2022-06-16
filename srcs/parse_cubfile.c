@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:09:38 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/14 22:59:26 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/16 22:56:41 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,9 @@ bool	count_row_col(t_data *data, int fd)
 		data->cubfile->map_col
 			= get_max_value(data->cubfile->map_col, ft_strlen(line));
 		free_buf((void **)&line);
+		if (data->cubfile->map_row * data->cubfile->map_col > 450 * 450)
+			return (false);
 		cnt++;
 	}
-	if (data->cubfile->map_row <= 2 || data->cubfile->map_col <= 2)
-		return (false);
-	return (true);
+	return (data->cubfile->map_row >= 3 && data->cubfile->map_col >= 3);
 }
