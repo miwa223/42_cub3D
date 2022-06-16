@@ -21,6 +21,7 @@ e_output_test "./cub3D cubfiles/error_case/type_extra_head_newline_e.cub" "cubfi
 e_output_test "./cub3D cubfiles/error_case/type_with_spaces_e.cub" "cubfile"
 e_output_test "./cub3D cubfiles/error_case/type_only_e.cub" "cubfile"
 e_output_test "./cub3D cubfiles/error_case/type_non_e.cub" "cubfile"
+e_output_test "./cub3D cubfiles/error_case/type_same_path_e.cub" "cubfile"
 
 # xpm error
 e_output_test "./cub3D cubfiles/error_case/xpm_nonexist_e.cub" "xpm"
