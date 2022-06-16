@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:51:45 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/14 09:53:54 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/16 20:11:52 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,29 @@ bool	parse_textures(t_data *data, char *line, int i)
 			= ft_substr(line, start, ft_strlen(line) - start);
 		if (!data->cubfile->textures[i])
 			exit_program(MALLOC_FAIL, data, 0);
+		if (!is_unique_texture(data, i))
+			return (false);
+	}
+	return (true);
+}
+
+bool	is_unique_texture(t_data *data, int i)
+{
+	int		j;
+	size_t	len;
+
+	j = 0;
+	len = ft_strlen(data->cubfile->textures[i]);
+	while (j < ALL_DIRECTION)
+	{
+		if (j != i && data->cubfile->textures[j])
+		{
+			len = get_max_value(len, ft_strlen(data->cubfile->textures[j]));
+			if (ft_strncmp(data->cubfile->textures[i],
+					data->cubfile->textures[j], len) == 0)
+				return (false);
+		}
+		j++;
 	}
 	return (true);
 }

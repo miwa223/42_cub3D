@@ -32,7 +32,7 @@ void	parse_map(t_data *data, char *file)
 	if (!map_dup)
 		exit_program(MALLOC_FAIL, data, ALL_DIRECTION);
 	if (!is_closed_by_wall(
-			map_dup, data->player.pos.x, data->player.pos.y, data))
+			map_dup, data->player.pos.y, data->player.pos.x, data))
 		exit_program(INVALID_MAP, data, ALL_DIRECTION);
 	free_2d_array(map_dup);
 }

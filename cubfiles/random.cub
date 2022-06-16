@@ -1,9 +1,9 @@
+F 220,100,0
+C 225,30,0
 NO ./textures/bluestone.xpm
 SO ./textures/redbrick.xpm
 WE ./textures/greystone.xpm
 EA ./textures/eagle.xpm
-F 220,100,0
-C 225,30,0
 
  11111
 1001001
