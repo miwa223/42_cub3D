@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 20:08:16 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/15 12:38:14 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/16 17:46:33 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,9 @@ static void
 	while (y < data->screen_height)
 	{
 		if (y <= data->screen_height / 2)
-			my_mlx_pixel_put(&data->img, x, y, data->cubfile->colors[FLOOR]);
-		else
 			my_mlx_pixel_put(&data->img, x, y, data->cubfile->colors[CELLING]);
+		else
+			my_mlx_pixel_put(&data->img, x, y, data->cubfile->colors[FLOOR]);
 		if (y >= wall->draw_start && y < wall->draw_end)
 		{
 			wall->texture_y = (int)wall->texture_pos_y;
