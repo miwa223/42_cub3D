@@ -34,7 +34,7 @@ ifeq ($(UNAME), Darwin)
 	MLXFLAG = -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
 else
 	ifeq ($(UNAME), Linux)
-		MLXFLAG = -Imlx -lXext -lX11
+		MLXFLAG = -Imlx -lXext -lX11 -lm
 	endif
 endif
 MLX_DIR		= mlx/
@@ -42,7 +42,7 @@ MLX_NAME	= libmlx_$(UNAME).a
 
 LIBFT			= $(LIBFT_DIR)$(LIBFT_NAME)
 LIBMLX			= $(MLX_DIR)$(MLX_NAME)
-LIBS			= $(LIBFT) $(LIBMLX) -lm
+LIBS			= $(LIBFT) $(LIBMLX)
 
 all: $(NAME)
 

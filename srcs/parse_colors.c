@@ -35,7 +35,7 @@ bool	get_color(t_data *data, int index, char *line)
 	char	**s_nums;
 
 	i = 0;
-	if (line[0] == ',')
+	if (line[0] == ',' || line[ft_strlen(line) - 1] == ',')
 		return (false);
 	s_nums = ft_split(line, ',');
 	if (!s_nums)
@@ -63,6 +63,8 @@ bool	is_valid_num(char **s_nums, int *nums)
 	while (s_nums[i])
 	{
 		j = skip_spaces(s_nums[i]);
+		if (s_nums[i][j] == '\0')
+			return (false);
 		while (s_nums[i][j] != '\0' && ft_isdigit(s_nums[i][j]) == 1)
 			j++;
 		if (i != 2)
@@ -70,7 +72,7 @@ bool	is_valid_num(char **s_nums, int *nums)
 		if (s_nums[i][j] != '\0')
 			return (false);
 		nums[i] = ft_atoi(s_nums[i], &overflow);
-		if (!(0 <= nums[i] && nums[i] <= 255))
+		if (overflow == 1 || !(0 <= nums[i] && nums[i] <= 255))
 			return (false);
 		i++;
 	}

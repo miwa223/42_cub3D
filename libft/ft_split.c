@@ -74,28 +74,25 @@ static bool	malloc_error(char **ary, size_t ary_nb)
 
 bool	split_lines(char **array, char const *line, char c, int size)
 {
-	int	i;
 	int	j;
 	int	cnt;
 	int	start;
 
-	i = 0;
 	j = 0;
 	cnt = 0;
 	start = 0;
-	while (line[i] != '\0' && j < size)
+	while (j < size)
 	{
 		cnt = count_substr_len(&line[start], c);
 		if (cnt > 0)
 		{
-			array[j] = ft_substr(line, i, cnt);
+			array[j] = ft_substr(line, start, cnt);
 			if (malloc_error(array, j++))
 				return (false);
-			start = i + cnt;
+			start += cnt;
 		}
 		else
-			start = i + 1;
-		i++;
+			start += 1;
 	}
 	array[j] = NULL;
 	return (true);
