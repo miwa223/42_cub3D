@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:09:38 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/12 19:50:56 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/16 22:56:41 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,46 +15,23 @@
 
 void	parse_cubfile(t_data *data, char *file)
 {
-	int	fd;
-
-	fd = open(file, O_RDONLY);
-	get_info(data, fd);
-	if (!count_row_col(data->cubfile, fd))
-		exit_program(INVALID_MAP);
-	if (close(fd) == ERROR)
-	{
-		free_buf((void **)&(data->cubfile));
-		exit_program(CLOSE_FAIL);
-	}
-	parse_map(data, file);
-}
-
-void	get_info(t_data *data, int fd)
-{
-	char	*line;
+	int		fd;
 	int		status;
-	int		cnt;
 	char	**types;
 
-	status = 1;
-	cnt = 0;
+	fd = open(file, O_RDONLY);
 	types = set_types();
-	while (status != EOF_READ && cnt < NB_TYPE)
-	{
-		status = get_next_line(fd, &line);
-		if (ft_strlen(line) == 0)
-		{
-			if (cnt == 0)
-				exit_program(INVALID_CUBFILE);
-			continue ;
-		}
-		if (!check_type(data, line, types))
-			exit_program(INVALID_CUBFILE);
-		cnt++;
-	}
-	free(types);
-	if (!xpm_to_img(data))
-		exit_program(XPM_TO_IMG_FAIL);
+	if (!types)
+		exit_program(MALLOC_FAIL, data, 0);
+	get_info(data, fd, types);
+	status = xpm_to_img(data);
+	if (status != ALL_DIRECTION)
+		exit_program(XPM_TO_IMG_FAIL, data, status);
+	if (!count_row_col(data, fd))
+		exit_program(INVALID_MAP, data, ALL_DIRECTION);
+	if (close(fd) == ERROR)
+		exit_program(CLOSE_FAIL, data, ALL_DIRECTION);
+	parse_map(data, file);
 }
 
 char	**set_types(void)
@@ -63,7 +40,7 @@ char	**set_types(void)
 
 	types = (char **)malloc(sizeof(char *) * NB_TYPE);
 	if (!types)
-		exit_program(MALLOC_FAIL);
+		return (NULL);
 	types[0] = "NO";
 	types[1] = "SO";
 	types[2] = "WE";
@@ -71,6 +48,32 @@ char	**set_types(void)
 	types[4] = "F";
 	types[5] = "C";
 	return (types);
+}
+
+void	get_info(t_data *data, int fd, char **types)
+{
+	char	*line;
+	int		status;
+	int		cnt;
+
+	status = 1;
+	cnt = 0;
+	while (status != EOF_READ && cnt < NB_TYPE)
+	{
+		status = get_next_line(fd, &line, data, 0);
+		if (ft_strlen(line) == 0)
+		{
+			free_buf((void **)&line);
+			if (cnt == 0)
+				exit_program(INVALID_CUBFILE, data, 0);
+			continue ;
+		}
+		if (!check_type(data, line, types))
+			exit_program(INVALID_CUBFILE, data, 0);
+		free_buf((void **)&line);
+		cnt++;
+	}
+	free(types);
 }
 
 bool	check_type(t_data *data, char *line, char **types)
@@ -88,7 +91,7 @@ bool	check_type(t_data *data, char *line, char **types)
 	return (false);
 }
 
-bool	count_row_col(t_cubfile *file, int fd)
+bool	count_row_col(t_data *data, int fd)
 {
 	char	*line;
 	int		status;
@@ -98,7 +101,7 @@ bool	count_row_col(t_cubfile *file, int fd)
 	cnt = 0;
 	while (status != EOF_READ)
 	{
-		status = get_next_line(fd, &line);
+		status = get_next_line(fd, &line, data, ALL_DIRECTION);
 		if (ft_strlen(line) == 0)
 		{
 			free_buf((void **)&line);
@@ -106,12 +109,13 @@ bool	count_row_col(t_cubfile *file, int fd)
 				continue ;
 			return (false);
 		}
-		file->map_row += 1;
-		file->map_col = get_max_value(file->map_col, ft_strlen(line));
+		data->cubfile->map_row += 1;
+		data->cubfile->map_col
+			= get_max_value(data->cubfile->map_col, ft_strlen(line));
 		free_buf((void **)&line);
+		if (data->cubfile->map_row * data->cubfile->map_col > 450 * 450)
+			return (false);
 		cnt++;
 	}
-	if (file->map_row <= 2 || file->map_col <= 2)
-		return (false);
-	return (true);
+	return (data->cubfile->map_row >= 3 && data->cubfile->map_col >= 3);
 }

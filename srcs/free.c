@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 18:36:26 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/12 19:03:17 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/15 13:48:50 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,22 @@ void	free_buf(void **buf)
 
 void	free_mlx(t_data *data, t_type type)
 {
-	int	i;
+	if (type >= 1)
+		mlx_destroy_image(data->mlx, data->tex_n.img);
+	if (type >= 2)
+		mlx_destroy_image(data->mlx, data->tex_s.img);
+	if (type >= 3)
+		mlx_destroy_image(data->mlx, data->tex_w.img);
+	if (type == 4)
+		mlx_destroy_image(data->mlx, data->tex_e.img);
+	if (data->win)
+		mlx_destroy_window(data->mlx, data->win);
+	if (data->mlx)
+		mlx_destroy_display(data->mlx);
+}
 
-	i = 0;
-	while (i < (int)type)
-	{
-		mlx_destroy_image(data->mlx, data->cubfile->textures[i]);
-		i++;
-	}
-	mlx_destroy_window(data->mlx, data->mlx_win);
-	mlx_destroy_display(data->mlx);
+void	free_data(t_data *data)
+{
+	free_2d_array(data->cubfile->map);
+	free(data->cubfile);
 }

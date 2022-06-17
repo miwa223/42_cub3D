@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:51:45 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/12 19:01:08 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/16 20:11:52 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,31 +27,53 @@ bool	parse_textures(t_data *data, char *line, int i)
 		data->cubfile->textures[i]
 			= ft_substr(line, start, ft_strlen(line) - start);
 		if (!data->cubfile->textures[i])
-			exit_program(MALLOC_FAIL);
+			exit_program(MALLOC_FAIL, data, 0);
+		if (!is_unique_texture(data, i))
+			return (false);
 	}
 	return (true);
 }
 
-bool	xpm_to_img(t_data *data)
+bool	is_unique_texture(t_data *data, int i)
+{
+	int		j;
+	size_t	len;
+
+	j = 0;
+	len = ft_strlen(data->cubfile->textures[i]);
+	while (j < ALL_DIRECTION)
+	{
+		if (j != i && data->cubfile->textures[j])
+		{
+			len = get_max_value(len, ft_strlen(data->cubfile->textures[j]));
+			if (ft_strncmp(data->cubfile->textures[i],
+					data->cubfile->textures[j], len) == 0)
+				return (false);
+		}
+		j++;
+	}
+	return (true);
+}
+
+int	xpm_to_img(t_data *data)
 {
 	int		i;
-	int		pixel;
 	void	*tmp;
+	t_image	*imgs[ALL_DIRECTION];
 
 	i = 0;
-	pixel = 64;
+	imgs[0] = &data->tex_n;
+	imgs[1] = &data->tex_s;
+	imgs[2] = &data->tex_w;
+	imgs[3] = &data->tex_e;
 	while (i < ALL_DIRECTION)
 	{
 		tmp = data->cubfile->textures[i];
-		data->cubfile->textures[i] = mlx_xpm_file_to_image(data->mlx,
-				tmp, &pixel, &pixel);
+		read_image(data, imgs[i], tmp);
 		free_buf((void **)&tmp);
-		if (!data->cubfile->textures[i])
-		{
-			free_mlx(data, i);
-			return (false);
-		}
+		if (!imgs[i]->img)
+			break ;
 		i++;
 	}
-	return (true);
+	return (i);
 }

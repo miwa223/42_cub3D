@@ -4,10 +4,22 @@ INCLUDES		= -I./includes
 CFLAGS			= -Wall -Werror -Wextra -MMD -MP $(INCLUDES)
 
 SRC_DIR			= srcs/
-SRC_FILE		= main.c validation.c init.c \
+SRC_FILE		:= main.c validation.c init.c \
 					parse_cubfile.c parse_colors.c parse_textures.c parse_map.c \
 					utils.c get_next_line.c free.c exit.c \
-					debug.c
+					debug.c \
+					draw_wall.c \
+					error.c \
+					game.c \
+					init_player.c \
+					mlx_utils.c \
+					vector.c \
+					wall_utils.c \
+					debug.c \
+					player.c \
+					hooks.c \
+					math_utils.c \
+					debug_ray.c
 SRC				= $(addprefix $(SRC_DIR), $(SRC_FILE))
 
 OBJ_DIR			= obj/
@@ -22,23 +34,26 @@ ifeq ($(UNAME), Darwin)
 	MLXFLAG = -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
 else
 	ifeq ($(UNAME), Linux)
-		MLXFLAG = -Imlx -lXext -lX11
+		MLXFLAG = -Imlx -lXext -lX11 -lm
 	endif
 endif
 MLX_DIR		= mlx/
 MLX_NAME	= libmlx_$(UNAME).a
 
+LIBFT			= $(LIBFT_DIR)$(LIBFT_NAME)
+LIBMLX			= $(MLX_DIR)$(MLX_NAME)
+LIBS			= $(LIBFT) $(LIBMLX)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	make -C $(MLX_DIR)
-	make -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) $(OBJ) -L. $(LIBFT_DIR)$(LIBFT_NAME) $(MLXFLAG) -L. $(MLX_DIR)$(MLX_NAME) -o $(NAME)
+$(NAME): $(OBJ) $(LIBS)
+	$(CC) $(CFLAGS) -o $@ $^ $(MLXFLAG)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	make -C $(MLX_DIR)
+	make -C $(LIBFT_DIR)
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
 	make clean -C $(MLX_DIR)
@@ -51,7 +66,10 @@ fclean: clean
 
 re: fclean all
 
+run:
+	./cub3D ./cubfiles/test.cub
+
 bonus: all
 
 -include $(DEPEND)
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re bonus run

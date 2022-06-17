@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:39:32 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/06 19:41:17 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/15 13:50:31 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,14 @@ int	main(int argc, char *argv[])
 	is_valid_argv(argc, argv);
 	init_data(&data);
 	parse_cubfile(&data, argv[1]);
-	print_data(&data);
-	mlx_hook(data.mlx_win, 17, 0, close_window, &data);
+	set_screen(&data);
+	print_info(&data);
+	mlx_hook(data.win, KeyPress, KeyPressMask, key_press, &data);
+	mlx_hook(data.win, KeyRelease, KeyReleaseMask, key_release, &data);
+	mlx_hook(data.win, ClientMessage, 1L << 17, close_window, &data);
+	mlx_loop_hook(data.mlx, &main_loop, &data);
 	mlx_loop(data.mlx);
+	free_mlx(&data, ALL_DIRECTION);
+	free_data(&data);
 	return (0);
 }

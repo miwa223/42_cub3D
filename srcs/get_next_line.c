@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 17:56:21 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/05 19:08:09 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/14 23:01:06 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,33 @@
 #include "cub3d.h"
 #include "get_next_line.h"
 
-int	get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line, t_data *data, t_type type)
 {
 	static char	*save[FD_MAX];
 	ssize_t		status;
 
 	*line = NULL;
 	if (fd < 0 || fd > FD_MAX || !line)
-		exit_program(OPEN_FAIL);
-	if (save[fd] && find_newline_in_save(&save[fd], line))
+		exit_program(OPEN_FAIL, data, type);
+	if (save[fd] && find_newline_in_save(&save[fd], line, data, type))
 		return (1);
 	status = get_line(&save[fd], line, fd);
+	if (status == -1)
+		exit_program(MALLOC_FAIL, data, type);
+	if (status == -2)
+		exit_program(READ_FAIL, data, type);
 	if (status == EOF_READ && *line == NULL)
 	{
 		*line = (char *)malloc(1);
 		if (!*line)
-			exit_program(MALLOC_FAIL);
+			exit_program(MALLOC_FAIL, data, type);
 		**line = '\0';
 	}
 	return (status);
 }
 
-bool	find_newline_in_save(char **save, char **line)
+bool	find_newline_in_save(
+		char **save, char **line, t_data *data, t_type type)
 {
 	char	*after_newline;
 	char	*tmp;
@@ -51,12 +56,12 @@ bool	find_newline_in_save(char **save, char **line)
 	if (!*line)
 	{
 		free_buf((void **)save);
-		exit_program(MALLOC_FAIL);
+		exit_program(MALLOC_FAIL, data, type);
 	}
 	tmp = *save;
 	*save = ft_strdup(after_newline);
 	if (!*save)
-		exit_program(MALLOC_FAIL);
+		exit_program(MALLOC_FAIL, data, type);
 	free_buf((void **)&tmp);
 	return (true);
 }
@@ -68,23 +73,27 @@ int	get_line(char **save, char **line, int fd)
 
 	buf = (char *)malloc((size_t)BUFFER_SIZE + 1);
 	if (!buf)
-		exit_program(MALLOC_FAIL);
+		return (-1);
 	while (!*save)
 	{
 		bytes = read(fd, buf, BUFFER_SIZE);
 		if (bytes == ERROR)
-			exit_program(READ_FAIL);
+			return (-2);
 		if (bytes == EOF_READ)
+		{
+			free_buf((void **)&buf);
 			return (0);
+		}
 		buf[bytes] = '\0';
-		store_nextline_in_save(save, buf);
-		buf_to_line(line, buf, save);
+		if (!store_nextline_in_save(save, buf)
+			|| !buf_to_line(line, buf, save))
+			return (-1);
 	}
 	free_buf((void **)&buf);
 	return (1);
 }
 
-void	store_nextline_in_save(char **save, char *buf)
+bool	store_nextline_in_save(char **save, char *buf)
 {
 	char	*after_newline;
 
@@ -93,12 +102,13 @@ void	store_nextline_in_save(char **save, char *buf)
 	{
 		*save = ft_strdup(after_newline);
 		if (!*save)
-			exit_program(MALLOC_FAIL);
+			return (false);
 		buf[ft_strlen(buf) - ft_strlen(after_newline) - 1] = '\0';
 	}
+	return (true);
 }
 
-void	buf_to_line(char **line, char *buf, char **save)
+bool	buf_to_line(char **line, char *buf, char **save)
 {
 	char	*tmp;
 
@@ -113,6 +123,7 @@ void	buf_to_line(char **line, char *buf, char **save)
 	if (!*line)
 	{
 		free_buf((void **)save);
-		exit_program(MALLOC_FAIL);
+		return (false);
 	}
+	return (true);
 }
