@@ -7,19 +7,8 @@ SRC_DIR			= srcs/
 SRC_FILE		:= main.c validation.c init.c \
 					parse_cubfile.c parse_colors.c parse_textures.c parse_map.c \
 					utils.c get_next_line.c free.c exit.c \
-					debug.c \
-					draw_wall.c \
-					error.c \
-					game.c \
-					init_player.c \
-					mlx_utils.c \
-					vector.c \
-					wall_utils.c \
-					debug.c \
-					player.c \
-					hooks.c \
-					math_utils.c \
-					debug_ray.c
+					draw_wall.c	error.c game.c init_player.c mlx_utils.c \
+					vector.c wall_utils.c player.c hooks.c math_utils.c
 SRC				= $(addprefix $(SRC_DIR), $(SRC_FILE))
 
 OBJ_DIR			= obj/
@@ -66,10 +55,7 @@ fclean: clean
 
 re: fclean all
 
-run:
-	./cub3D ./cubfiles/test.cub
-
 bonus: all
 
 -include $(DEPEND)
-.PHONY: all clean fclean re bonus run
+.PHONY: all clean fclean re bonus
