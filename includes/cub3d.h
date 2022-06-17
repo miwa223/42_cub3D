@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:39:08 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/17 10:00:02 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/17 12:19:48 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,9 +166,6 @@ void		free_data(t_data *data);
 void		exit_program(char *msg, t_data *data, t_type type);
 int			close_window(t_data *data);
 
-// debug.c
-void		print_data(t_data *data);
-
 /* draw_wall.c */
 void		draw_wall(t_data *data);
 /* errors.c */
@@ -193,14 +190,6 @@ void		vec_rotate(t_vec2 *vec, double rad);
 /* wall_utils.c */
 void		set_wall_color(t_data *data, t_ray *ray);
 void		set_texture(t_data *data, t_ray *ray);
-/* debug_ray.c */
-void		print_ray(t_ray ray);
-void		print_wall(t_wall wall);
-/* debug.c */
-void		print_map(t_data *data);
-void		print_da(t_data *data);
-void		print_image(t_data *data);
-void		print_info(t_data *data);
 /* player.c */
 void		update_player(t_data *data);
 /* hook.c */
