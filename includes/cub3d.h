@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:39:08 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/17 09:47:13 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/17 10:00:02 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef enum e_type
 	EAST,
 	ALL_DIRECTION,
 	FLOOR = 0,
-	CEILLING,
+	CEILING,
 }			t_type;
 
 typedef struct s_vec2

@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 20:08:16 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/17 09:49:32 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/17 10:00:02 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ static void
 	while (y < data->screen_height)
 	{
 		if (y <= data->screen_height / 2)
-			my_mlx_pixel_put(&data->img, x, y, data->cubfile->colors[CEILLING]);
+			my_mlx_pixel_put(&data->img, x, y, data->cubfile->colors[CEILING]);
 		else
 			my_mlx_pixel_put(&data->img, x, y, data->cubfile->colors[FLOOR]);
 		if (y >= wall->draw_start && y < wall->draw_end)
