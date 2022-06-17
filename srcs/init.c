@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:29:30 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/16 20:13:39 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/17 09:47:13 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_data(t_data *data)
 	while (i < ALL_DIRECTION)
 		data->cubfile->textures[i++] = NULL;
 	data->cubfile->colors[FLOOR] = RGB_MAX + 1;
-	data->cubfile->colors[CELLING] = RGB_MAX + 1;
+	data->cubfile->colors[CEILLING] = RGB_MAX + 1;
 	data->cubfile->map_row = 0;
 	data->cubfile->map_col = 0;
 	data->cubfile->map = NULL;

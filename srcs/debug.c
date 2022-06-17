@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:38:19 by kfumiya           #+#    #+#             */
-/*   Updated: 2022/06/15 12:36:34 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/17 09:47:13 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void
 	printf("screen_w: %d screen_h: %d\n", \
 		data->screen_width, data->screen_height);
 	printf("horizon: %lf\n", data->horizon);
-	printf("sky_color: %x\n", data->cubfile->colors[CELLING]);
+	printf("sky_color: %x\n", data->cubfile->colors[CEILLING]);
 	printf("ground_color: %x\n", data->cubfile->colors[FLOOR]);
 	printf("player\n");
 	printf("pos\n\tx: %lf\n\ty: %lf\n", \
