@@ -6,7 +6,7 @@
 /*   By: kfumiya <kfumiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:39:32 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/15 13:50:31 by kfumiya          ###   ########.fr       */
+/*   Updated: 2022/06/17 11:48:21 by kfumiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	main(int argc, char *argv[])
 	init_data(&data);
 	parse_cubfile(&data, argv[1]);
 	set_screen(&data);
-	print_info(&data);
 	mlx_hook(data.win, KeyPress, KeyPressMask, key_press, &data);
 	mlx_hook(data.win, KeyRelease, KeyReleaseMask, key_release, &data);
 	mlx_hook(data.win, ClientMessage, 1L << 17, close_window, &data);
