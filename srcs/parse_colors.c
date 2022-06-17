@@ -6,7 +6,7 @@
 /*   By: mmasubuc <mmasubuc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:30:44 by mmasubuc          #+#    #+#             */
-/*   Updated: 2022/06/16 20:15:33 by mmasubuc         ###   ########.fr       */
+/*   Updated: 2022/06/17 11:13:55 by mmasubuc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ bool	parse_color(t_data *data, char *line, int i)
 
 bool	get_color(t_data *data, int index, char *line)
 {
-	int		i;
 	int		nums[3];
+	size_t	i;
 	char	**s_nums;
 
 	i = 0;
@@ -40,7 +40,7 @@ bool	get_color(t_data *data, int index, char *line)
 	s_nums = ft_split(line, ',');
 	if (!s_nums)
 		exit_program(MALLOC_FAIL, data, 0);
-	while (s_nums[i] != NULL)
+	while (s_nums[i] != NULL && i < 4)
 		i++;
 	if (i == 3 && is_valid_num(s_nums, nums))
 	{
@@ -56,9 +56,9 @@ bool	get_color(t_data *data, int index, char *line)
 
 bool	is_valid_num(char **s_nums, int *nums)
 {
-	int	i;
-	int	j;
-	int	overflow;
+	size_t	i;
+	size_t	j;
+	int		overflow;
 
 	i = 0;
 	overflow = 0;
